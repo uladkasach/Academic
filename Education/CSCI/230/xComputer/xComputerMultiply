@@ -1,0 +1,135 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Allocate memory locations to numA (A), numB (B), and set Prod (Product) to 0;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+        @0
+numA:  data ; 
+
+        @1
+numB:  data ; 
+
+        @2
+Prod:  data ; 
+
+            @3
+negStore:  data  ; negStore will be used to decide if the final product needs negating or not.
+
+
+
+LOD-C 21   ; Set initial to
+SUB-C 0  ; Subtract a number to get a negative
+STO numA      ;
+
+LOD-C 0   ; Set initial to
+SUB-C 5  ; Subtract a number to get a negative
+STO numB      ;
+
+LOD-C 0       ; Set the Product = 0;
+STO Prod      ;
+
+
+LOD-C 0       ; Set the Negative initially to = 0;
+STO negStore  ;
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Handle Negative Numbers Part A.
+;; Description Follows
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Check if A negative - 
+;if negative 
+; invert it using "Not"
+;  Add 1 to negStore
+; else 
+; jump around it to B
+;if B negative
+; invert it using "Not"
+;  Add 1 to negStore
+; else 
+; Continue
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+LOD-C 0; Load 0 to AC
+SUB numA ; Subtract A to get a negative
+
+JMN skipNegA;
+
+STO numA ; Since to get here the value needed to be negated already, the positive value is already here and can be loaded.
+
+LOD negStore; Get the neg store value (even though itll be 0 at this point, good practice to not assume and keep things systematic.) 
+INC; Add 1 to neg Store
+STO negStore; Put number back in neg store.
+          
+skipNegA: LOD-C 0; just a place holder for readability
+
+
+LOD-C 0; Load 0 to AC
+SUB numB ; Subtract B to get a negative
+JMN skipNegB;
+
+STO numB ; Since to get here the value needed to be negated already, the positive value is already here and can be loaded.
+
+LOD negStore; Get the neg store value (even though itll be 0 at this point, good practice to not assume and keep things systematic.) 
+INC; Add 1 to neg Store
+STO negStore; Put number back in neg store.
+
+
+skipNegB: LOD-C 0; just a place holder for readability          
+             
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Now do the Math and multiply
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Use A as the counter. Count down from A to 0; Add B to Prod each time.
+; Make sure A and B are not 0 initially. 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+LOD numA;
+JMZ DONE;
+LOD numB;
+JMZ DONE;
+
+TOP: LOD-C 0; just a place holder for readability  
+
+LOD Prod;
+ADD numB;
+STO Prod;
+             
+LOD numA;
+SUB-C 1;
+STO numA;
+
+JMZ DONE;            
+JMP TOP;             
+             
+DONE: LOD-C 0; just a place holder for readability  
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Now handle our negatives.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; If negStore is 0, skip to DONEFINAL and display product
+; If negStore isn't, subtract 2, check to see if 0. If it is, jump to DONE FINAL. Otherwise, negate and display.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+LOD negStore;
+JMZ DONEFINAL; 
+
+SUB-C 2;
+JMZ DONEFINAL;
+
+LOD-C 0;
+SUB Prod;
+STO Prod;
+
+DONEFINAL: LOD-C 0; just a place holder for readability 
+LOD Prod;
+HLT;
+             
+             
+             
+             

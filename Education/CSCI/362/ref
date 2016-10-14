@@ -1,0 +1,39 @@
+http://stackoverflow.com/questions/6159968/declaring-array-of-int
+
+int* z = new int[10];
+- Allocates a dynamic array of size 10 integers on heap and returns the address of this memory to z.
+- You have to explicitly delete this dynamic memory after using it. using:
+
+delete []z;
+
+
+
+/*
+std::string returnStringOfRandomNumbersNLong(int n){
+ 
+    std::srand ( unsigned ( std::time(0) ) );
+    std::vector<int> myvector;
+
+    // set some values:
+    for (int i=1; i<10; ++i) myvector.push_back(i); // 1 2 3 4 5 6 7 8 9
+
+    // using built-in random generator:
+    std::random_shuffle ( myvector.begin(), myvector.end() );   
+
+    std::string result = "";
+
+
+    // print out content:
+    std::cout << "myvector contains:";
+    for (std::vector<int>::iterator index = myvector.begin(); index!=myvector.end(); index++){
+        std::cout << ' ' << *index;
+        result += ", ";
+        result += NumberToString(5);
+    }
+
+    std::cout << '\n';
+    std::cout << "-- " << result << endl;
+    
+    return result;
+}
+*/

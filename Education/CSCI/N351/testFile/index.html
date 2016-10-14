@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<!--
+ Filename: index.html					
+ Written by: Uladzimir Kasacheuski
+ Purpose: A directory of coursework
+ Date: 1/20/16
+ Modification History:							
+     1/20/16 - Original Build
+-->
+<!-- begin document -->
+    
+<head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>Vlads Bangin' Student Course Page</title>
+    <link rel="icon" type="image/png" href="favicon.png" /> 
+    <!-- these to css files are ones i use in most of my web dev projects - hope its alright to include them. -->
+        <link rel="stylesheet" type="text/css" href="mGlobal/flexbox.css">
+        <link rel="stylesheet" type="text/css" href="mGlobal/global.css">
+    <!-- -->
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+
+<body>
+	<header>
+		<h1>CSCI N341 <span style = 'font-size:17px;'> A Course Work Analysis </span></h1>
+		<p>By Uladzimir Kasascheuski</p>
+    </header>
+    <div style = 'height:20px;'></div><!-- put some space between header and assignemnts -->
+	<div id="assignments">
+		<h3> Course Work </h3>
+		<hr> 
+        <!-- start list -->
+        
+        <div style = 'height:15px;'></div><!-- spacer -->
+        
+			<a class = 'linkElementButton' href="./testFile/testFile.html">  
+				<span >
+                    Test File
+                </span> 
+			</a> 
+        
+			<a class = 'linkElementButton' href="./labs/jsHelloWorld/">  
+				<span >
+                    Lab : JS Hello World
+                </span> 
+			</a> 
+        
+			<a class = 'linkElementButton' href="./labs/IDed&Styled/">  
+				<span >Lab : IDed & Styled</span> 
+			</a> 
+        
+            <div style = 'display:flex;'>
+        
+                <div class = 'flexme' style = 'min-width:25px;  '>
+                    <div style = 'margin:auto;'>Lab : Multi Write </div>
+                </div>
+                <div style = 'width:25px;'></div>
+                <a class = 'linkElementButton' href="./labs/multiWrites/docuWrite/">  
+                    <span >Document.write()</span> 
+                </a> 
+                <div style = 'width:25px;'></div>
+                <a class = 'linkElementButton' href="./labs/multiWrites/textContent/">  
+                    <span >.textContent</span> 
+                </a> 
+                <div style = 'width:25px;'></div>
+                <a class = 'linkElementButton' href="./labs/multiWrites/innerHTML/">  
+                    <span >.innerHTML</span> 
+                </a> 
+                <div style = 'width:25px;'></div>
+                <a class = 'linkElementButton' href="./labs/multiWrites/allTogether/">  
+                    <span >All Together</span> 
+                </a> 
+            </div>
+        <!-- end list -->
+	</div>
+
+</body>
+
+<!-- end document -->
+</html>

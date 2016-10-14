@@ -1,0 +1,102 @@
+     lod-c 1     ; Load "1" into AC
+     sto 12	 ; Store AC in mem 12
+
+     lod 12      ; Load mem12 into AC - This Instruction is stored in mem2
+     inc	 ; Increase AC by 1
+     sto 13      ; Store AC in mem13 - This Instruction is stored in mem2
+
+     lod 2       ; Load mem2 into AC (mem 2 is an instruction - but because of binaries set up it loads as a number)
+     inc	 ; Increase AC by 1 (Changes lod 12 into lod 13)
+     sto 2 	 ; Store AC (lod 13 instruction) into mem2
+
+     lod 4       ; Does the same thing as above except changes mem4's instruction
+     inc	 ; from putting new digit into mem13, to mem 14
+     sto 4
+
+     jmp 2       ; Go back to the instruction in location 2
+     
+     
+     
+     
+     
+     
+     ///////////////////////////////////////////////
+     program that counts forever
+     
+                    LOD-C 1 ; Load 1 into AC (0)
+                    STO 12 // Store AC in mem12 (1)
+                    
+                    
+                    LOD 12 ; Load mem12 into AC (2)
+                    INC ; Increase AC by 1
+                    STO 12 ; Store AC in mem12
+                    JMP 2 ; go back to mem2 instruction
+                    
+                    
+                    
+                    /////////////////
+                    
+              lod-c 17
+              add-c 105
+              sto 10
+              hlt
+              
+              
+              P inc vs add-c 1
+              
+              Same shit. Tested.
+              
+              
+              
+              
+              
+              //////////////////////////////////
+              
+              
+To give a name to a memory location in an assembly language program, all you have to do is put the name, followed by a colon, before the contents of the memory location. For example, the line
+
+            Loop:   LOD 12
+in a program would give the name "Loop" to the memory location that contains the LOD 12 instruction. Elsewhere in the program, you can use the word "Loop" to refer to that location, instead of using the numerical address. For example, you could jump to that location with the command JMP Loop.
+
+
+                     LOD-C 1       ; Set Count equal to 1
+                     STO Count
+             Loop:   LOD Count     ; Add 1 to Count
+                     INC
+                     STO Count
+                     JMP Loop      ; Jump back to start of loop
+
+                     @12
+             Count:  data          ; Location to be used for counting
+             
+             
+             
+             
+             This example introduces two other features of xComputer's assembly language: "@" and "data". The word "data" is used as a place-holder for a memory location that is going to be used by the program to contain a data value. When the assembler translates the program into machine language and loads it into memory, it replaces "data" with a zero. (Actually, you could just use a 0 in the program, but "data" is more descriptive of your intentions.) The line "@12" is not translated into machine language. It is a directive to the assembler telling the computer to store the next item in location 12. In this case, it means that the Count will be stored in location 12. Without the "@12", it would be stored in location 6, the next sequential location after the JMP Loop instruction. If there were additional items after Count, they would be stored in locations 13, 14, and so on -- until the next "@" directive.
+
+
+
+P = is Count: 0 same as Count:data ?
+
+P = why is it after the fact, anyway. I guess because its not an instruction, but explaining where it is. Data says start at 0. 
+What about Count:5? because of the LOD-C 1, count always starts at 1
+
+Could i use any word there? Nope. Use data. Good usage.
+
+
+
+//////////////////////////////
+DESCISIONS
+
+conditional jump instructions such as JMZ and JMN
+
+When the computer encounters the instruction JMZ Loc, it checks the accumulator register. If the number in the accumulator is zero, then the computer jumps to location "Loc." Otherwise, the computer simply proceeds on to the next statement 
+
+The JMN instruction is similar, except that it checks whether the number in the accumulator is negative. Another conditional jump instruction, JMF, tests the value in the Flag register. It is described in one of the exercises at the end of the lab.
+
+
+
+Loop = 
+
+if value is zero jump to "halt", else continue
+Jump to 2

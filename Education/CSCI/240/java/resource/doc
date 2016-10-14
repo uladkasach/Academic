@@ -1,0 +1,3 @@
+cd /var/www/CSCi/java
+javac name.class
+java name

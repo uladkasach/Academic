@@ -1,0 +1,13 @@
+In Java args contains the supplied command-line arguments as an array of String objects.
+
+In other words, if you run your program as java MyProgram one two then args will contain ["one", "two"].
+
+If you wanted to output the contents of args, you can just loop through them like this...
+
+public class ArgumentExample {
+    public static void main(String[] args) {
+        for(int i = 0; i < args.length; i++) {
+            System.out.println(args[i]);
+        }
+    }
+}

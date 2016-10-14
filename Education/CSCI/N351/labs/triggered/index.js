@@ -1,0 +1,36 @@
+/*
+ Filename: index.js
+ Written by: Uladzimir Kasacheuski (UAK)
+ Purpose: Triggered Lab
+ Date: 30 March 2016
+ Modification History:
+    Original Build
+*/
+
+////////////////////////////////////////////////////////////
+// Function to run on page load
+////////////////////////////////////////////////////////////
+function theFunction(){
+    $(window).resize(function(){
+        alert("Boom Boom Boom Boom!"); 
+    });
+    
+    $(window).keypress(function(e) {
+        if(e.keyCode == 13){
+            alert("OH NOOOO, ITS TURNED AGAINST US! KRAKEN ATACKKK!!!!!!!!");  
+        }
+    });
+    
+    $("#thebox").on('mouseover', function(){
+        alert("OFF YOU GO SCALLY WAG!!! \n \"AAAAAAAaaaaaaaahhhhhhh\" \n *sploosh*"); 
+    });
+}
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+// Attach function to pageload event
+////////////////////////////////////////////////////////////
+$(document).ready(theFunction); // end of $(document).ready()
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////

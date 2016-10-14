@@ -1,0 +1,187 @@
+<!doctype html>
+<!--
+ Filename: index.html
+ Written by: Uladzimir Kasacheuski (UAK)
+ Purpose: Simple Form Validation
+ Date: 26 April 2016
+ Modification History:
+    Original Build
+-->
+
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Final : Form Prototype</title>
+   <link rel="stylesheet" href="index.css">
+   <link href='https://fonts.googleapis.com/css?family=Pirata+One' rel='stylesheet' type='text/css'>
+   <script src="http://code.jquery.com/jquery-latest.min.js"  type="text/javascript"></script>
+   <script src="index.js"></script>
+    
+    <!-- Widget Required Content -->
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <!-- end -->
+    
+    <!-- css to define theme colors -->
+    <link href="../theme/jquery-ui.css" rel="stylesheet"> 
+   <link rel="stylesheet" href="../theme/theme.css">
+    
+    <!-- include validator files -->
+    <script src="../theme/jquery.validate.js" > </script>
+	<link rel="stylesheet" href="../theme/valicss/screen.css">
+</head>
+
+    
+    
+<body style = 'padding:15px;'>
+    
+    <div id="tabs" style = 'max-width:600px;'>
+  <ul>
+    <li><a href="#tabs-1">What is this?</a></li>
+    <li><a href="#tabs-2">Why?</a></li>
+  </ul>
+  <div id="tabs-1">
+    <p>This is a pre-order form for Pwaer automatic gardening solutions. After filling this out - if we have enough interest - we will be able to deliver the product. Each plant kit costs $29.99 and includes an ultrasensor as well as a waterer. An ultrasensor senses everything from soild moisture, to humidity, to temperature, to air quality. A waterer is a system that applys the perfect amount of water everytime.</p>
+  </div>
+  <div id="tabs-2">
+    <p> Why do we need preorders? For the same reason that kickstarter exists. Why would we make something no one wanted? Why dont we use kickstarter? Because the developer is a mean person and never told us about it untill he finished.</p>
+  </div>
+</div>
+    
+    
+      <div style = 'height:15px;'></div>
+<div style = 'width:100%;'>
+    <div class = 'button flexme' style = 'width:175px; height:30px; margin-down:15px;' id = 'resetButton'>
+        <div style = 'margin:auto;'>
+            Reset
+        </div>
+    </div>
+</div>
+      <div style = 'height:15px;'></div>
+<form  id="theForm" style = 'max-width:600px;' >
+<div id="accordion" style = 'height:auto;'>
+  <h3>The Preorder Form</h3>
+  <div>
+    <div class = 'flexme'>
+        <div style = 'width:150px; height:30px;' class = 'flexme'> <div style = 'margin:auto; margin-left:5px;'> Name </div></div>  
+        <div style = 'width:250px;' class = 'flexme'> 
+            <div style = 'margin:auto; margin-left:5px;'> 
+                <input name = 'name' type = 'text' id = 'inputName' required> <Br>
+            </div>
+        </div>  
+    </div>
+      <div style = 'height:15px;'></div>
+    <div class = 'flexme'>
+        <div style = 'width:150px; height:30px;' class = 'flexme'> <div style = 'margin:auto; margin-left:5px; '> Gender </div></div>  
+        <div style = 'width:250px;' class = 'flexme'> 
+            <div style = 'margin:auto; margin-left:5px;'> 
+  <input type="radio" name="gender" value="male"> Male<br>
+  <input type="radio" name="gender" value="female"> Female<br>
+  <input type="radio" id = 'otherRadio' name="gender" value="other" checked> Mystery
+            </div>
+        </div>  
+    </div>
+      <div style = 'height:15px;'></div>
+    <div class = 'flexme'>
+        <div style = 'width:150px; height:30px;' class = 'flexme'> <div style = 'margin:auto; margin-left:5px; '> Goals <br> <span style = 'font-size:12px;'> (Optional) </span> </div></div>  
+        <div style = 'width:350px;' class = 'flexme'> 
+            <div style = 'margin:auto; margin-left:5px;'> 
+  <input type="checkbox" name="goals" value="1"> Save Time<br>
+  <input type="checkbox" name="goals" value="2"> Save your Plants <br>
+  <input type="checkbox" name="goals" value="3"> Explore New Technologies <br>
+  <input type="checkbox" name="goals" value="4"> Optimize Plant Health
+            </div>
+        </div>  
+    </div>
+      
+      <div style = 'height:15px;'></div>
+      
+    <div class = 'flexme'>
+        <div style = 'width:150px; height:30px;' class = 'flexme'> <div style = 'margin:auto; margin-left:5px;'> Email </div></div>  
+        <div style = 'width:250px;' class = 'flexme'> 
+            <div style = 'margin:auto; margin-left:5px;'> 
+                <input name = 'email' type = 'email' id = 'inputEmail' required>
+            </div>
+        </div>  
+    </div>
+      <div style = 'height:15px;'></div>
+    <div class = 'flexme'>
+        <div style = 'width:150px; height:30px;' class = 'flexme'> <div style = 'margin:auto; margin-left:5px;'> Password </div></div>  
+        <div style = 'width:250px;' class = 'flexme'> 
+            <div style = 'margin:auto; margin-left:5px;'> 
+                <input name = 'password' type = 'password' id = 'inputPassword' required>
+            </div>
+        </div>  
+    </div>
+      <div style = 'height:15px;'></div>
+    <div class = 'flexme'>
+        <div style = 'width:150px; height:30px;' class = 'flexme'> <div style = 'margin:auto; margin-left:5px;'> Phone Number <br> <span style = 'font-size:12px;'> (Optional) </span> </div></div>  
+        <div style = 'width:250px;' class = 'flexme'> 
+            <div style = 'margin:auto; margin-left:5px;'> 
+                <input name = 'tel' type = 'tel' id = 'inputTelephone'>
+            </div>
+        </div>  
+    </div>
+      
+      <div style = 'height:15px;'></div>
+    <div class = 'flexme'>
+        <div style = 'width:150px; height:30px;' class = 'flexme'> <div style = 'margin:auto; margin-left:5px;'> Tip <br> <span style = ' font-size:12px;'> (From 0$ to 100$) </span> </div></div>  
+        <div style = 'width:250px;' class = 'flexme'> 
+            <div style = 'margin:auto; margin-left:5px;' class = 'flexme'> 
+                <div id = 'sliderOutput'>$0</div>
+            </div>
+            <div style = 'margin:auto; margin-left:5px;' class = 'flexme'> 
+                <div id="slider" style = 'width:200px; height:5px;'></div>
+            </div>
+        </div>  
+    </div>
+      <div style = 'height:15px;'></div>
+    <div class = 'flexme'>
+        <div style = 'width:150px; height:30px;' class = 'flexme'> <div style = 'margin:auto; margin-left:5px;'> Delivery Date </div></div>  
+        <div style = 'width:250px;' class = 'flexme'> 
+            <div style = 'margin:auto; margin-left:5px;'> 
+                <input type="text" id="datepicker" required>
+            </div>
+        </div>  
+    </div>
+      <div style = 'height:15px;'></div>
+    <div class = 'flexme'>
+        <div style = 'width:150px; height:30px;' class = 'flexme'> <div style = 'margin:auto; margin-left:5px;'> Favorite Plant<br> <span style = 'font-size:12px;'> (Optional) </div></div>  
+        <div style = 'width:250px;' class = 'flexme'> 
+            <div style = 'margin:auto; margin-left:5px;'> 
+                <input id="tags">
+            </div>
+        </div>  
+    </div>
+  </div>
+</div>
+    
+    <div style = 'height:15px;'></div>
+<div style = 'width:100%;'>
+    <div id = 'preButton' style = 'padding:15px; color:red;' >
+    
+    </div>
+    <div class = 'button flexme' style = 'width:175px; height:30px; margin-down:15px;' id = 'outputButton'>
+        <div style = 'margin:auto;'>
+            Submit
+        </div>
+    </div>
+</div>
+</form>
+    <div style = 'height:15px;'></div>
+<div style = 'width:100%;'>
+    <div class = '' style = 'width:175px; height:30px;' id = 'outputElement'>
+    </div>
+</div>
+    
+    
+
+<script>
+    //javascript:this.form.submit();
+</script>    
+    
+    
+    
+</body>
+</html>
