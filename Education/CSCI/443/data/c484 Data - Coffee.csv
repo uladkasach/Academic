@@ -1,0 +1,21 @@
+Ord#,Cust#,Date,Ship,Ship$,Name,Addr,BlnID,Name,Type,$/lb,#lb,Gnd,RetID,Name,Location,BeanID,Name,Origin,DateSto,Decaf,Amt,Cost,%
+1012,AB101,2016-06-15,FedEx,4,John Doe,Indy,CR01,Kona #1,R,80.5,1,G,CBC1,CBC Store,"Indy, IN",K001,Kona #1,"Kona, HI",May 2016,0,225,80.5,100
+1013,AC101,2016-06-15,FedEx,8,Anne Green,Indy,CR02,Kona #2,R,81.5,1,G,CBC1,CBC Store,"Indy, IN",K002,Kona #2,"Kona, HI",May 2016,1,110,81.5,100
+1015,AC101,2016-07-20,FedEx,4,Anne Green,Indy,CS03,Dark,S,49.5,1,G,CBC1,CBC Store,"Indy, IN",B234,Brazil Dark,"Santos, BR",Apr 2016,0,225,18.5,50
+1015,AC101,2016-07-20,FedEx,4,Anne Green,Indy,CS03,Dark,S,49.5,1,G,CBC1,CBC Store,"Indy, IN",K001,Kona #1,"Kona, HI",May 2016,0,225,80.5,50
+2000,CC201,2016-07-21,UPS,12,Bill Green,NYC,N02,Spec02,S,24.7,1,B,NYC1,New York 1,"NYC, NY",B234,Brazil Dark,"Santos, BR",Apr 2016,0,225,18.5,90
+2000,CC201,2016-07-21,UPS,12,Bill Green,NYC,N02,Spec02,S,24.7,1,B,NYC1,New York 1,"NYC, NY",K001,Kona #1,"Kona, HI",May 2016,0,225,80.5,10
+2050,SS205,2016-08-01,UPS,16,John Doe,SFO,N02,Spec02,S,24.7,2,B,NYC1,New York 1,"NYC, NY",B234,Brazil Dark,"Santos, BR",Apr 2016,0,225,18.5,90
+2050,SS205,2016-08-01,UPS,16,John Doe,SFO,N02,Spec02,S,24.7,2,B,NYC1,New York 1,"NYC, NY",K001,Kona #1,"Kona, HI",May 2016,0,225,80.5,10
+2051,LL101,2016-08-02,UPS,20,Amy White,LA,CS05,House,S,17,5,G,CBC1,CBC Store,"Indy, IN",B234,Brazil Dark,"Santos, BR",Apr 2016,0,225,18.5,75
+2051,LL101,2016-08-02,UPS,20,Amy White,LA,CS05,House,S,17,5,G,CBC1,CBC Store,"Indy, IN",CO23,Supremo,Columbia,Jun 2016,0,50,12.65,25
+2055,QQ202,2016-08-10,UPS,20,Gail Black,PHX,SFOP,Blend P,R,13.1,5,G,SFO3,SFO store,"SFO, CA",P002,High Grown,Peru D,Jul 2016,1,100,13.1,100
+3015,AB101,2016-08-10,UPS,12,John Doe,Indy,CS04,SoAm,S,16.68,1,B,CBC1,CBC Store,"Indy, IN",B234,Brazil Dark,"Santos, BR",Apr 2016,0,225,18.5,60
+3015,AB101,2016-08-10,UPS,12,John Doe,Indy,CS04,SoAm,S,16.68,1,B,CBC1,CBC Store,"Indy, IN",CR05,Tarrazu,Costa Rico,Jan 2015,0,33,14.8,20
+3015,AB101,2016-08-10,UPS,12,John Doe,Indy,CS04,SoAm,S,16.68,1,B,CBC1,CBC Store,"Indy, IN",P001,High Grown,Peru,Jul 2016,0,100,13.1,20
+3016,AB101,2016-08-10,UPS,12,John Doe,Indy,SFOA,Blend A,S,12.88,1,B,SFO3,SFO store,"SFO, CA",CO23,Supremo,Columbia,Jun 2016,0,50,12.65,50
+3016,AB101,2016-08-10,UPS,12,John Doe,Indy,SFOA,Blend A,S,12.88,1,B,SFO3,SFO store,"SFO, CA",P001,High Grown,Peru,Jul 2016,0,100,13.1,50
+3017,LL101,2016-08-10,FedEx,24,Amy White,LA,SFOP,Blend P,R,13.1,4,G,SFO3,SFO store,"SFO, CA",P002,High Grown,Peru D,Jul 2016,1,100,13.1,100
+4000,LL101,2016-09-02,FedEx,32,Amy White,LA,CS05,House,S,17,4,G,CBC1,CBC Store,"Indy, IN",B234,Brazil Dark,"Santos, BR",Apr 2016,0,225,18.5,75
+4000,LL101,2016-09-02,FedEx,32,Amy White,LA,CS05,House,S,17,4,G,CBC1,CBC Store,"Indy, IN",CO23,Supremo,Columbia,Jun 2016,0,50,12.65,25
+4000,LL101,2016-09-02,FedEx,32,Amy White,LA,CR01,Kona #1,R,80.5,2,G,CBC1,CBC Store,"Indy, IN",K001,Kona #1,"Kona, HI",May 2016,0,225,80.5,100

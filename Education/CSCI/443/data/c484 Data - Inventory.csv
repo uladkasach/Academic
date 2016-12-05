@@ -1,0 +1,7 @@
+OrderNum,CustID,Date,ShipMode,ShiCost,Name,Address,InvNum,Desc,Cost,Wt,Qty
+1013,AC101,2016-06-15,FedEx,8,Anne Green,Indy,1345,CBC cup (W),2.5,1,2
+2000,CC201,2016-07-21,UPS,12,Bill Green,NYC,2208,CBC grinder,22.5,2,1
+2050,SS205,2016-08-01,UPS,16,John Doe,SFO,1345,CBC cup (W),2.5,1,1
+2050,SS205,2016-08-01,UPS,16,John Doe,SFO,1346,CBC cup (B),2.5,1,1
+3015,AB101,2016-08-10,UPS,12,John Doe,Indy,2209,AAA grinder,27.5,2,1
+4000,LL101,2016-09-02,FedEx,32,Amy White,LA,2209,AAA grinder,27.5,2,1

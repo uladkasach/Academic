@@ -1,0 +1,12 @@
+OrderNumber,CustomerID,Date,ShippingMode,ShippingCost,Salesperson
+1012,AB101,2016-06-15,FedEx,4,Bill Brown
+1013,AC101,2016-06-15,FedEx,8,Bill Brown
+1015,AC101,2016-07-20,FedEx,4,Anne Dough
+2000,CC201,2016-07-21,UPS,12,Jane Smith
+2050,SS205,2016-08-01,UPS,16,Frank Martin
+2051,LL101,2016-08-02,UPS,20,Bill Brown
+2055,QQ202,2016-08-10,UPS,20,Mike Green
+3015,AB101,2016-08-10,UPS,12,Bill Brown
+3016,AB101,2016-08-10,UPS,12,Alice Grey
+3017,LL101,2016-08-10,FedEx,32,Bill Brown
+4000,LL101,2016-09-02,FedEx,24,Anne Dough

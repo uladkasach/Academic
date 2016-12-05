@@ -145,7 +145,7 @@ int main() {
     /////////////////////////////////////////////
     // Get input
     /////////////////////////////////////////////
-    int inputMatriciesCount = 6;
+    int inputMatriciesCount = 7;
     int dim = inputMatriciesCount;
     AMatrix* inputMatricies = new AMatrix[dim];
     inputMatricies[0].rowCount = 10;
@@ -166,8 +166,8 @@ int main() {
     inputMatricies[5].rowCount = 30;
     inputMatricies[5].colCount = 15;
     
-    inputMatricies[5].rowCount = 15;
-    inputMatricies[5].colCount = 9;
+    inputMatricies[6].rowCount = 15;
+    inputMatricies[6].colCount = 9;
     
     
     /////////////////////////////////////////////
