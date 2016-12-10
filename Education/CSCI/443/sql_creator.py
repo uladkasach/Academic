@@ -19,10 +19,10 @@ data = pd.DataFrame(salespeople, columns=columns).drop_duplicates();
 data.columns = ['EmpID', 'Name'];
 
 additionalData = [
-    ['EMP0101', 'Sam'], 
-    ['EMP0000', 'Bob'], 
-    ['EMP0102', np.nan], 
-    ['EMP0103', np.nan],
+    ['EMP0000', 'Bob Bureaucrat'], 
+    ['EMP0101', 'Sam Supervison'], 
+    ['EMP0102', 'Mary Manager'], 
+    ['EMP0103', 'Fred Foreman'],
 ]
 data2 = pd.DataFrame(additionalData, columns = data.columns);
 data = data.append(data2);
@@ -236,7 +236,7 @@ tablesList.append({'tableName' : tableName, 'data' : data});
 tableName = "Bureaucrat";
 columns = ['EmpID','StartDate','EndDate','NextInspection'];
 data = [
-    ['EMP0000',  '2016-06-03', np.nan, np.nan],
+    ['EMP0000', np.nan, np.nan, np.nan],
 ];
 data = pd.DataFrame(data,  columns=columns).drop_duplicates();
 

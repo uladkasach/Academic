@@ -5,10 +5,10 @@ INSERT INTO Employee (EmpID,Name) VALUES ('EMP213','Anne Dough');
 INSERT INTO Employee (EmpID,Name) VALUES ('EMP303','Mike Green');
 INSERT INTO Employee (EmpID,Name) VALUES ('EMP309','Alice Grey');
 INSERT INTO Employee (EmpID,Name) VALUES ('EMP400','Bill Brown');
-INSERT INTO Employee (EmpID,Name) VALUES ('EMP0101','Sam');
-INSERT INTO Employee (EmpID,Name) VALUES ('EMP0000','Bob');
-INSERT INTO Employee (EmpID,Name) VALUES ('EMP0102',NULL);
-INSERT INTO Employee (EmpID,Name) VALUES ('EMP0103',NULL);
+INSERT INTO Employee (EmpID,Name) VALUES ('EMP0000','Bob Bureaucrat');
+INSERT INTO Employee (EmpID,Name) VALUES ('EMP0101','Sam Supervison');
+INSERT INTO Employee (EmpID,Name) VALUES ('EMP0102','Mary Manager');
+INSERT INTO Employee (EmpID,Name) VALUES ('EMP0103','Fred Foreman');
 
 INSERT INTO Retailer (RetID,Name,Location) VALUES ('CBC1','CBC Store','Indy, IN');
 INSERT INTO Retailer (RetID,Name,Location) VALUES ('NYC1','New York 1','NYC, NY');
@@ -105,5 +105,5 @@ INSERT INTO CoffeeShipments (OrderID,BlendID,NumLB) VALUES ('3017','SFOP','4');
 INSERT INTO CoffeeShipments (OrderID,BlendID,NumLB) VALUES ('4000','CS05','4');
 INSERT INTO CoffeeShipments (OrderID,BlendID,NumLB) VALUES ('4000','CR01','2');
 
-INSERT INTO Bureaucrat (EmpID,StartDate,EndDate,NextInspection) VALUES ('EMP0000','2016-06-03',NULL,NULL);
+INSERT INTO Bureaucrat (EmpID,StartDate,EndDate,NextInspection) VALUES ('EMP0000',NULL,NULL,NULL);
 
