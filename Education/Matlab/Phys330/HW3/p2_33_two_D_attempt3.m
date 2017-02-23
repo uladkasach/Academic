@@ -8,7 +8,7 @@ clear;
 
 
 
-threshold = 0.0001;
+threshold = 0.01;
 error = 100;
 iteration = 0;
 while error > threshold && iteration < 100000
@@ -18,13 +18,19 @@ while error > threshold && iteration < 100000
     fprintf('\ncalculating result for n = %d\n', max_iterations);
     sum_value = 0;
     for i = 1:max_iterations % odd numbers
-        this_part_value = (-1)^(i+1)/i;
-        %size(this_part_value)
-        %fprintf('at i (%i) this part contributes (%f)\n', i, this_part_value);
-        %fprintf(' --- ');
-        %this_part_value
+        this_part_value = (-1)^(i)/i;
         sum_value = sum_value + this_part_value;
-        %(sum_value)
+        this_part_value = 1/(i*sqrt(2));
+        sum_value = sum_value + this_part_value;
+        for j = 1:(i-1)
+            this_part_value = 2/sqrt(i^2 + j^2);
+            %size(this_part_value)
+            %fprintf('at i (%i) this part contributes (%f)\n', i, this_part_value);
+            %fprintf(' --- ');
+            %this_part_value
+            sum_value = sum_value + this_part_value;
+            %(sum_value)
+        end
     end
 
     fprintf('done iterating, the final sum value found is : \n');
@@ -38,3 +44,5 @@ while error > threshold && iteration < 100000
     end
     last_value = this_value;
 end
+
+sum_value * 2
