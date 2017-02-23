@@ -51,6 +51,9 @@ end
 sum_value
 v_0 = 0.6218; %% found by setting z = 1;
 plot(z, last_value / (v_0), '-s');
+title('V -vs- Z')
+ylabel('V/V0');
+xlabel('z/a');
 
 %%%%%%%5
 %% Result = N(z) = 5

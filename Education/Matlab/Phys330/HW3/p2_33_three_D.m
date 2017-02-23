@@ -19,18 +19,20 @@ while error > threshold && iteration < 10000000
     sum_value = 0;
     for i = 0:max_iterations % odd numbers
         for j = 0:max_iterations
+            
+            for k = 0:max_iterations
+                if(i == 0 && j == 0 && k == 0)
+                    continue;
+                end
 
-            if(i == 0 && j == 0)
-                continue;
+                this_part_value = (-1)^(i+j+k)/sqrt(i^2 + j^2 + k^2);
+                %size(this_part_value)
+                %fprintf('at i (%i) this part contributes (%f)\n', i, this_part_value);
+                %fprintf(' --- ');
+                %this_part_value
+                sum_value = sum_value + this_part_value;
+                %(sum_value)
             end
-
-            this_part_value = (-1)^(i+j)/sqrt(i^2 + j^2);
-            %size(this_part_value)
-            %fprintf('at i (%i) this part contributes (%f)\n', i, this_part_value);
-            %fprintf(' --- ');
-            %this_part_value
-            sum_value = sum_value + this_part_value;
-            %(sum_value)
             
         end
     end
