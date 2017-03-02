@@ -17,13 +17,10 @@ while error > threshold && iteration < 10000000
     max_iterations = iteration;
     fprintf('\ncalculating result for n = %d\n', max_iterations);
     sum_value = 0;
-    for i = 0:max_iterations % odd numbers
-        for j = 0:max_iterations
-
-            if(i == 0 && j == 0)
-                continue;
-            end
-
+    for i = 1:max_iterations % odd numbers
+        this_part_value = (-1)^(i)/i;
+        sum_value = sum_value + this_part_value;
+        for j = 1:max_iterations
             this_part_value = (-1)^(i+j)/sqrt(i^2 + j^2);
             %size(this_part_value)
             %fprintf('at i (%i) this part contributes (%f)\n', i, this_part_value);
@@ -31,7 +28,7 @@ while error > threshold && iteration < 10000000
             %this_part_value
             sum_value = sum_value + this_part_value;
             %(sum_value)
-            
+
         end
     end
 
