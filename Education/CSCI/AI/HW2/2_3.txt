@@ -1,0 +1,13 @@
+sublist([], []).
+sublist([A|B], [A|C]) :- sublist(B, C).
+sublist(B, [_|C]) :- sublist(B, C).
+
+remove_an_instance(X, [X|Z], Z).
+remove_an_instance(X, [A|Z], [A|R]) :- remove_an_instance(X, Z, R).
+
+
+has_triplicates([A|B]) :- 
+    sublist([A], B), 
+    remove_an_instance(A, B, R), 
+    sublist([A], R); 
+    has_triplicates(B).

@@ -1,0 +1,7 @@
+### Half Sister is considered to be true if both parents are not known 
+
+sibling(X, Y) :- parent(Z, X), parent(Z, Y), X \= Y.
+full_sibling(X, Y) :- parent(V, X), parent(V, Y), parent(W, X), parent(W, Y), X \= Y, W \= V.
+
+half_sibling(X, Y) :- sibling(X, Y), \+ full_sibling(X, Y), X \= Y.
+half_sister(X, Y) :- half_sibling(X, Y), female(X). 

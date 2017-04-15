@@ -1,0 +1,352 @@
+###########################################################
+## Optimal Purity = 0.893333333333
+###########################################################
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 7
+Total SSE Cost            : 78.9408414261
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 5.90161290323 2.74838709677 4.3935483871 1.43387096774 
+ -- SSE  : 39.8209677419
+ -- Size : 62
+ - Cluster 1
+ -- Mean : 6.85 3.07368421053 5.74210526316 2.07105263158 
+ -- SSE  : 23.8794736842
+ -- Size : 38
+ - Cluster 2
+ -- Mean : 5.006 3.418 1.464 0.244 
+ -- SSE  : 15.2404
+ -- Size : 50
+Final Cluster Assignments : 
+[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 1 1 1
+ 1 1 0 0 1 1 1 1 0 1 0 1 0 1 1 0 0 1 1 1 1 1 0 1 1 1 1 0 1 1 1 0 1 1 1 0 1
+ 1 0]
+Max Partition Quantity in Each Cluster:
+[48, 36, 50]
+Purity = 0.893333333333
+Purity = 0.893333333333
+
+########################################################################################################
+## 10 Randomized Iterations
+########################################################################################################
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 11
+Total SSE Cost            : 78.945065826
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 5.88360655738 2.74098360656 4.38852459016 1.43442622951 
+ -- SSE  : 38.2908196721
+ -- Size : 61
+ - Cluster 1
+ -- Mean : 6.85384615385 3.07692307692 5.71538461538 2.05384615385 
+ -- SSE  : 25.4138461538
+ -- Size : 39
+ - Cluster 2
+ -- Mean : 5.006 3.418 1.464 0.244 
+ -- SSE  : 15.2404
+ -- Size : 50
+Final Cluster Assignments : 
+[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 1 1 1
+ 1 1 0 0 1 1 1 1 0 1 0 1 0 1 1 0 0 1 1 1 1 1 0 1 1 1 1 0 1 1 1 0 1 1 1 0 1
+ 1 0]
+Max Partition Quantity in Each Cluster:
+[47, 36, 50]
+Purity = 0.886666666667
+Purity = 0.886666666667
+
+
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 11
+Total SSE Cost            : 78.945065826
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 5.88360655738 2.74098360656 4.38852459016 1.43442622951 
+ -- SSE  : 38.2908196721
+ -- Size : 61
+ - Cluster 1
+ -- Mean : 5.006 3.418 1.464 0.244 
+ -- SSE  : 15.2404
+ -- Size : 50
+ - Cluster 2
+ -- Mean : 6.85384615385 3.07692307692 5.71538461538 2.05384615385 
+ -- SSE  : 25.4138461538
+ -- Size : 39
+Final Cluster Assignments : 
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 2 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 2 2 2 0 2 2 2 2
+ 2 2 0 0 2 2 2 2 0 2 0 2 0 2 2 0 0 2 2 2 2 2 0 2 2 2 2 0 2 2 2 0 2 2 2 0 2
+ 2 0]
+Max Partition Quantity in Each Cluster:
+[47, 50, 36]
+Purity = 0.886666666667
+Purity = 0.886666666667
+
+
+
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 11
+Total SSE Cost            : 78.945065826
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 6.85384615385 3.07692307692 5.71538461538 2.05384615385 
+ -- SSE  : 25.4138461538
+ -- Size : 39
+ - Cluster 1
+ -- Mean : 5.006 3.418 1.464 0.244 
+ -- SSE  : 15.2404
+ -- Size : 50
+ - Cluster 2
+ -- Mean : 5.88360655738 2.74098360656 4.38852459016 1.43442622951 
+ -- SSE  : 38.2908196721
+ -- Size : 61
+Final Cluster Assignments : 
+[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 0 2 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0 2 0 0 0 0 2 0 0 0 0
+ 0 0 2 2 0 0 0 0 2 0 2 0 2 0 0 2 2 0 0 0 0 0 2 0 0 0 0 2 0 0 0 2 0 0 0 2 0
+ 0 2]
+Max Partition Quantity in Each Cluster:
+[36, 50, 47]
+Purity = 0.886666666667
+Purity = 0.886666666667
+
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 14
+Total SSE Cost            : 78.945065826
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 5.006 3.418 1.464 0.244 
+ -- SSE  : 15.2404
+ -- Size : 50
+ - Cluster 1
+ -- Mean : 6.85384615385 3.07692307692 5.71538461538 2.05384615385 
+ -- SSE  : 25.4138461538
+ -- Size : 39
+ - Cluster 2
+ -- Mean : 5.88360655738 2.74098360656 4.38852459016 1.43442622951 
+ -- SSE  : 38.2908196721
+ -- Size : 61
+Final Cluster Assignments : 
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 1 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 1 1 1 1 2 1 1 1 1
+ 1 1 2 2 1 1 1 1 2 1 2 1 2 1 1 2 2 1 1 1 1 1 2 1 1 1 1 2 1 1 1 2 1 1 1 2 1
+ 1 2]
+Max Partition Quantity in Each Cluster:
+[50, 36, 47]
+Purity = 0.886666666667
+Purity = 0.886666666667
+
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 7
+Total SSE Cost            : 78.9408414261
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 5.90161290323 2.74838709677 4.3935483871 1.43387096774 
+ -- SSE  : 39.8209677419
+ -- Size : 62
+ - Cluster 1
+ -- Mean : 6.85 3.07368421053 5.74210526316 2.07105263158 
+ -- SSE  : 23.8794736842
+ -- Size : 38
+ - Cluster 2
+ -- Mean : 5.006 3.418 1.464 0.244 
+ -- SSE  : 15.2404
+ -- Size : 50
+Final Cluster Assignments : 
+[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 1 1 1
+ 1 1 0 0 1 1 1 1 0 1 0 1 0 1 1 0 0 1 1 1 1 1 0 1 1 1 1 0 1 1 1 0 1 1 1 0 1
+ 1 0]
+Max Partition Quantity in Each Cluster:
+[48, 36, 50]
+Purity = 0.893333333333
+Purity = 0.893333333333
+
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 7
+Total SSE Cost            : 142.859291667
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 4.74166666667 2.95416666667 1.75416666667 0.329166666667 
+ -- SSE  : 18.5470833333
+ -- Size : 24
+ - Cluster 1
+ -- Mean : 6.31458333333 2.89583333333 4.97395833333 1.703125 
+ -- SSE  : 118.651875
+ -- Size : 96
+ - Cluster 2
+ -- Mean : 5.21666666667 3.64 1.47333333333 0.28 
+ -- SSE  : 5.66033333333
+ -- Size : 30
+Final Cluster Assignments : 
+[2 0 0 0 2 2 0 2 0 0 2 0 0 0 2 2 2 2 2 2 2 2 2 2 0 0 2 2 2 0 0 2 2 2 0 2 2
+ 0 0 2 2 0 0 2 2 0 2 0 2 2 1 1 1 1 1 1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1]
+Max Partition Quantity in Each Cluster:
+[20, 50, 30]
+Purity = 0.666666666667
+Purity = 0.666666666667
+
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 11
+Total SSE Cost            : 78.945065826
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 6.85384615385 3.07692307692 5.71538461538 2.05384615385 
+ -- SSE  : 25.4138461538
+ -- Size : 39
+ - Cluster 1
+ -- Mean : 5.88360655738 2.74098360656 4.38852459016 1.43442622951 
+ -- SSE  : 38.2908196721
+ -- Size : 61
+ - Cluster 2
+ -- Mean : 5.006 3.418 1.464 0.244 
+ -- SSE  : 15.2404
+ -- Size : 50
+Final Cluster Assignments : 
+[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 0 0 0 1 0 0 0 0
+ 0 0 1 1 0 0 0 0 1 0 1 0 1 0 0 1 1 0 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 0 0 1 0
+ 0 1]
+Max Partition Quantity in Each Cluster:
+[36, 47, 50]
+Purity = 0.886666666667
+Purity = 0.886666666667
+
+
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 8
+Total SSE Cost            : 78.9408414261
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 5.90161290323 2.74838709677 4.3935483871 1.43387096774 
+ -- SSE  : 39.8209677419
+ -- Size : 62
+ - Cluster 1
+ -- Mean : 6.85 3.07368421053 5.74210526316 2.07105263158 
+ -- SSE  : 23.8794736842
+ -- Size : 38
+ - Cluster 2
+ -- Mean : 5.006 3.418 1.464 0.244 
+ -- SSE  : 15.2404
+ -- Size : 50
+Final Cluster Assignments : 
+[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 1 1 0 1 1 1 1
+ 1 1 0 0 1 1 1 1 0 1 0 1 0 1 1 0 0 1 1 1 1 1 0 1 1 1 1 0 1 1 1 0 1 1 1 0 1
+ 1 0]
+Max Partition Quantity in Each Cluster:
+[48, 36, 50]
+Purity = 0.893333333333
+Purity = 0.893333333333
+
+
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 5
+Total SSE Cost            : 145.279322036
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 4.70909090909 3.10909090909 1.39545454545 0.190909090909 
+ -- SSE  : 2.84409090909
+ -- Size : 22
+ - Cluster 1
+ -- Mean : 6.30103092784 2.88659793814 4.9587628866 1.69587628866 
+ -- SSE  : 123.795876289
+ -- Size : 97
+ - Cluster 2
+ -- Mean : 5.21612903226 3.53870967742 1.68064516129 0.358064516129 
+ -- SSE  : 18.6393548387
+ -- Size : 31
+Final Cluster Assignments : 
+[2 0 0 0 2 2 0 2 0 0 2 0 0 0 2 2 2 2 2 2 2 2 0 2 2 0 2 2 2 0 0 2 2 2 0 0 2
+ 0 0 2 2 0 0 2 2 0 2 0 2 0 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1]
+Max Partition Quantity in Each Cluster:
+[22, 50, 28]
+Purity = 0.666666666667
+Purity = 0.666666666667
+
+
+Results...
+Data points in input file : 150
+Dimensionality of data    : 4
+Value of k                : 3
+Iterations to Converge    : 8
+Total SSE Cost            : 142.859291667
+Final Cluster Statistics  : 
+ - Cluster 0
+ -- Mean : 6.31458333333 2.89583333333 4.97395833333 1.703125 
+ -- SSE  : 118.651875
+ -- Size : 96
+ - Cluster 1
+ -- Mean : 4.74166666667 2.95416666667 1.75416666667 0.329166666667 
+ -- SSE  : 18.5470833333
+ -- Size : 24
+ - Cluster 2
+ -- Mean : 5.21666666667 3.64 1.47333333333 0.28 
+ -- SSE  : 5.66033333333
+ -- Size : 30
+Final Cluster Assignments : 
+[2 1 1 1 2 2 1 2 1 1 2 1 1 1 2 2 2 2 2 2 2 2 2 2 1 1 2 2 2 1 1 2 2 2 1 2 2
+ 1 1 2 2 1 1 2 2 1 2 1 2 2 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0]
+Max Partition Quantity in Each Cluster:
+[50, 20, 30]
+Purity = 0.666666666667
+Purity = 0.666666666667
+

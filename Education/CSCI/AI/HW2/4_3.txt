@@ -1,0 +1,12 @@
+
+occurrences(Element, List, Occurences) :- 
+    count_occurences(Element, List, 0, Occurences), !.
+
+count_occurences(_, [], Occ, Occ).
+count_occurences(Element, [This_Element|Rest], Counter, Occ) :-
+    Element == This_Element,
+    NewCounter is Counter + 1,
+    count_occurences(Element, Rest, NewCounter, Occ).
+count_occurences(Element, [This_Element|Rest], Counter, Occ) :-
+    \+ (Element == This_Element),
+    count_occurences(Element, Rest, Counter, Occ).

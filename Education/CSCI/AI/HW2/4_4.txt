@@ -1,0 +1,31 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Append List
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+concat_list([], L, L).
+concat_list([H|T], L2, [H|L3]) :-
+    concat_list(T, L2, L3).
+
+%%%%%%%%%%%%
+%%% Eval if Factor
+%%%%%%%%%%%%%
+is_a_factor_for(X, Factor):- (X mod Factor) =:= 0.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Build Factors List
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+divisors(X, L):-
+    Number_To_Try is X,
+    build_factors_list(X, Number_To_Try, [], L), !.
+build_factors_list(_, 0, List, List). 
+build_factors_list(X, Number_To_Try, Current_List, Final_List) :-
+    is_a_factor_for(X, Number_To_Try),
+    New_Number is Number_To_Try - 1,
+    concat_list(Current_List, [Number_To_Try], New_Current_List),
+	build_factors_list(X, New_Number, New_Current_List, Final_List).
+build_factors_list(X, Number_To_Try, Current_List, Final_List) :-
+    \+ is_a_factor_for(X, Number_To_Try) ,
+    New_Number is Number_To_Try - 1,
+	build_factors_list(X, New_Number, Current_List, Final_List).
+	
+    
+    

@@ -1,0 +1,8 @@
+
+factorial(N, Factorial):-
+    calc_factorial(N, 1, Factorial).
+calc_factorial(0, Factorial, Factorial).
+calc_factorial(N, Partial_Factorial, Factorial) :-
+    New_Partial_Factorial is Partial_Factorial * N,
+    New_N is N - 1,
+    calc_factorial(New_N, New_Partial_Factorial, Factorial).

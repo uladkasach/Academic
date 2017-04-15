@@ -1,0 +1,19 @@
+## Sisters include half sisters
+## Cousins only includes first-cousins, second cousins are not included
+
+
+sibling(X, Y) :- parent(Z, X), parent(Z, Y), X \= Y.
+full_sibling(X, Y) :- parent(V, X), parent(V, Y), parent(W, X), parent(W, Y), X \= Y, W \= V.
+half_sibling(X, Y) :- sibling(X, Y), \+ full_sibling(X, Y), X \= Y.
+
+parent_sibling(X, Y) :- sibling(X, PARENT), parent(PARENT, Y).
+uncle(X, Y) :- male(X), parent_sibling(X, Y). 
+aunt(X, Y) :- female(X), parent_sibling(X, Y). 
+
+grandparent(X, Y) :- parent(X, PARENT), parent(PARENT, Y), Y \= X, PARENT \= X, PARENT \= Y.
+
+
+father(X, Y) :- parent(X, Y), male(X), X \= Y.
+sister(X, Y) :- sibling(X, Y), female(X).
+grandmother(X, Y) :- grandparent(X, Y), female(X).
+cousin(X, Y) :- parent_sibling(Aunt_OR_Uncle, Y), parent(Aunt_OR_Uncle, X), X \= Y.  

@@ -1,0 +1,14 @@
+   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  GCD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+gcd(A, B, GCD) :-
+    A < B, find_GCD(A, B, GCD).
+gcd(A, B, GCD) :-
+    B < A, find_GCD(B, A, GCD).
+%GCD(A,B) = GCD(B,R)
+find_GCD(0, X, X).
+find_GCD(Smaller, Larger, GCD) :- 
+    Smaller =\= 0,
+    R is Larger mod Smaller,
+    find_GCD(R, Smaller, GCD).

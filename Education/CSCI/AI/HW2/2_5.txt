@@ -1,0 +1,17 @@
+
+concat_lists([], List, List).
+concat_lists([Elem | List1], List2, [Elem | List3]) :- concat_lists(List1, List2, List3).
+
+remove_nth(N, List, NewList) :-
+    dont_concat_nth(N, 1, List,  NewList).
+
+dont_concat_nth(N, Index, [Elem | List1], NewList) :-
+    Index =:= N,
+    NewIndex is Index + 1,
+    concat_lists(List1, [], NewList).
+
+dont_concat_nth(N, Index, [Elem | List1], [Elem | NewList]) :-
+    Index =\= N,
+    NewIndex is Index + 1,
+    dont_concat_nth(N, NewIndex, List1, NewList).
+	

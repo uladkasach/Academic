@@ -1,0 +1,5 @@
+This program utilizes numpy. It has been tested on pegasus and runs under python version 2.7.
+
+The program requires that the first argument is the data source and that the second file is the number of clusters desired. The program also optionally enables the user to select which data rows to use as initial clusters, where the first row in the data source file is row 0. The program requires that the number of centroids specified in the initial centroids file is the same as the K value.
+
+The program outputs The number of data points, the dimension of each data point, and the total number of clusters selected (K), the number of iterations requried for convergence, the total error with the final cluster configuration,  and the final assignment for each data point. Additionally, for each cluster the program outputs the Mean, the SSE Score, and the final size of the cluster.

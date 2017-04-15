@@ -1,0 +1,16 @@
+
+is_odd(X) :- X /\ 1 =:= 1, !. % Using bitwise AND (/\) to check for odd
+
+remove_every_other(List, NewList) :-
+    dont_concat_eventh(1, List,  NewList).
+
+dont_concat_eventh(_, [], []).
+dont_concat_eventh(Index, [_ | List1], NewList) :-
+    \+ is_odd(Index),
+    NewIndex is Index + 1,
+    dont_concat_eventh(NewIndex, List1, NewList).
+dont_concat_eventh(Index, [Elem | List1], [Elem | NewList]) :-
+    is_odd(Index),
+    NewIndex is Index + 1,
+    dont_concat_eventh(NewIndex, List1, NewList).
+	

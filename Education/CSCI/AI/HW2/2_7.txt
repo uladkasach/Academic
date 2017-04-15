@@ -1,0 +1,8 @@
+
+len_list(List, Length) :- 
+    gen_list_len(List, 0, Length).
+
+gen_list_len([], Length, Length).
+gen_list_len([_|Rest], Counter, Length) :-
+    NewCounter is Counter + 1,
+    gen_list_len(Rest, NewCounter, Length).

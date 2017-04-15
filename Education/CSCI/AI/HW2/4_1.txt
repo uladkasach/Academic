@@ -1,0 +1,29 @@
+ Call:p(_11356)
+ Call:a(_11356)
+ Exit:a(1)
+ Exit:p(1)
+X = 1
+ Redo:p(_11356)
+ Call:b(_11356)
+ Exit:b(1)
+ Call:c(1)
+ Exit:c(1)
+ Call:d(1)
+ Fail:d(1)
+ Redo:b(_11356)
+ Exit:b(2)
+ Call:c(2)
+ Exit:c(2)
+ Call:d(2)
+ Exit:d(2)
+ Call:e(2)
+ Exit:e(2)
+ Exit:p(2)
+X = 2
+ Redo:p(_11356)
+ Call:f(_11356)
+ Exit:f(3)
+ Exit:p(3)
+X = 3
+
+APPEND PICTURE OF TREE

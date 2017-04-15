@@ -1,0 +1,4 @@
+is_sorted([X|List]) :- is_sorted(X, List).
+
+is_sorted(_, []).
+is_sorted(X, [Y|List]) :- X < Y, is_sorted(Y, List).

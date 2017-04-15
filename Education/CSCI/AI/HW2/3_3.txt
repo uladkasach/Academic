@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% Evaluate if Prime
+%%%%%%%%%%%%%%%%%%%%%%%%
+is_prime(Number) :-
+    Smaller_Number is Number - 1,
+    has_no_divisors(Number, Smaller_Number).
+has_no_divisors(_, 1).
+has_no_divisors(Number, Divisor) :-
+    Remainder is Number mod Divisor,
+    Remainder =\= 0,
+    New_Divisor is Divisor - 1,
+    has_no_divisors(Number, New_Divisor).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Append List
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+concat_list([], L, L).
+concat_list([H|T], L2, [H|L3]) :-
+    concat_list(T, L2, L3).
+
+%%%%%%%%%%%%
+%%% Eval if Factor
+%%%%%%%%%%%%%
+is_a_factor_for(X, Factor):- (X mod Factor) =:= 0.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Build Factors List
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+factor(X, L):-
+    Number_To_Try is X - 1,
+    build_factors_list(X, Number_To_Try, [], L).
+build_factors_list(_, 1, List, List). 
+build_factors_list(X, Number_To_Try, Current_List, Final_List) :-
+    is_a_factor_for(X, Number_To_Try),
+    is_prime(Number_To_Try),
+    New_Number is Number_To_Try - 1,
+    concat_list(Current_List, [Number_To_Try], New_Current_List),
+	build_factors_list(X, New_Number, New_Current_List, Final_List).
+build_factors_list(X, Number_To_Try, Current_List, Final_List) :-
+    (\+ is_a_factor_for(X, Number_To_Try) ; \+is_prime(Number_To_Try)),
+    New_Number is Number_To_Try - 1,
+	build_factors_list(X, New_Number, Current_List, Final_List).
+	
+    
+    

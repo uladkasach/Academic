@@ -1,0 +1,5 @@
+sublist([], []).
+sublist([A|B], [A|C]) :- sublist(B, C).
+sublist(B, [_|C]) :- sublist(B, C).
+
+has_duplicates([A|B]) :- sublist([A], B); has_duplicates(B).

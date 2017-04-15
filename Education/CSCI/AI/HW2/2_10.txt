@@ -1,0 +1,19 @@
+
+
+%%%%%%%%%%%%%%%%%%
+%% Find Minimum
+%%%%%%%%%%%%%%%%%%%
+minimum(List, Global_Minimum) :-
+    find_minimum(List, [], Global_Minimum).
+
+first_is_minimum(_, []).
+first_is_minimum(X, Y):- X < Y.
+
+find_minimum([], Minimum, Minimum).
+find_minimum([X|List], This_Minimum, Global_Minimum) :- 
+   first_is_minimum(X, This_Minimum),
+   find_minimum(List, X, Global_Minimum).
+find_minimum([X|List], This_Minimum, Global_Minimum) :- 
+   \+ first_is_minimum(X, This_Minimum),
+   find_minimum(List, This_Minimum, Global_Minimum).
+       

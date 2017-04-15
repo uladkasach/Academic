@@ -1,0 +1,5 @@
+
+concat_lists([], List, List).
+concat_lists([Elem | List1], List2, [Elem | List3]) :- concat_lists(List1, List2, List3).
+
+remove_third([A, B, _ | Z], L) :- concat_lists([A, B], Z, L).

@@ -1,0 +1,121 @@
+
+
+which_is_nth(N, List, Element) :- 
+    search_for_nth(N, List, 1, Element).
+
+search_for_nth(N, [Element | _], Index, Element) :-
+    Index =:= N.
+search_for_nth(N, [_ | TailList], Index, Element) :-
+    Index =\= N,
+    NewIndex is Index + 1,
+    search_for_nth(N, TailList, NewIndex, Element).
+
+
+
+[1, 2, 3, 4, 5] = [A|[B|T]]
+
+
+
+
+female(luba).
+female(tammy).
+female(sarah).
+female(rita).
+
+
+male(vova).
+male(alex).
+male(igor).
+male(frankenstein).
+male(jena).
+
+
+parent(sarah, vova).
+parent(sarah, rita).
+parent(jena, rita).
+parent(alex, vlad).
+parent(marina, vlad).
+parent(luba, alex).
+parent(luba, igor).
+parent(vova, alex).
+parent(vova, igor).
+parent(luba, frankenstein).
+parent(luba, tammy).
+
+
+
+
+
+
+
+female(luba).
+female(tammy).
+female(sarah).
+female(rita).
+
+
+male(vova).
+male(alex).
+male(igor).
+male(frankenstein).
+male(jena).
+male(great_grandad).
+
+parent(great_grandad, vova).
+parent(great_grandad, rita).
+parent(sarah, vova).
+parent(sarah, rita).
+parent(jena, rita).
+parent(alex, vlad).
+parent(marina, vlad).
+parent(luba, alex).
+parent(luba, igor).
+parent(vova, alex).
+parent(vova, igor).
+parent(luba, frankenstein).
+parent(luba, tammy).
+
+
+
+
+
+
+
+
+
+female(luba).
+female(tammy).
+female(sarah).
+female(rita).
+female(tanya).
+female(babushka_olga).
+female(sasha).
+female(lisa).
+
+
+male(vova).
+male(alex).
+male(igor).
+male(frankenstein).
+male(jena).
+male(great_grandad).
+
+parent(great_grandad, vova).
+parent(great_grandad, rita).
+parent(sarah, vova).
+parent(sarah, rita).
+parent(rita, jena).
+parent(rita, tanya).
+parent(alex, vlad).
+parent(marina, vlad).
+parent(luba, alex).
+parent(luba, igor).
+parent(vova, alex).
+parent(vova, igor).
+parent(tanya, lisa).
+parent(jena, sasha).
+
+parent(babushka_olga, marina).
+
+parent(luba, frankenstein).
+parent(luba, tammy).

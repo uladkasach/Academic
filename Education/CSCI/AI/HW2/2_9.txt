@@ -1,0 +1,31 @@
+%%%%%%%%%%%%%%
+%%% Calc Len
+%%%%%%%%%%%%%%%
+calc_len(List, Length) :- len_list(List, Length).
+
+len_list(List, Length) :- 
+    gen_list_len(List, 0, Length).
+
+gen_list_len([], Length, Length).
+gen_list_len([_|Rest], Counter, Length) :-
+    NewCounter is Counter + 1,
+    gen_list_len(Rest, NewCounter, Length).
+
+%%%%%%%%%%%%%%%%%
+%% Calc Sum
+%%%%%%%%%%%%%%%%%
+calc_sum(List, Sum):-
+    gen_calc_sum(List, 0, Sum).
+gen_calc_sum([], Sum, Sum).
+gen_calc_sum([This_Val|Rest], Partial_Sum, Sum) :-
+    New_Partial_Sum is Partial_Sum + This_Val,
+    gen_calc_sum(Rest, New_Partial_Sum, Sum).
+
+
+%%%%%%%%%%%%%%%%%
+%% Calc Mean
+%%%%%%%%%%%%%%%%%%
+mean(List, Mean) :-
+    calc_sum(List, Sum),
+    calc_len(List, Length),
+	Mean is Sum / Length.    
