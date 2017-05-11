@@ -78,11 +78,12 @@ def calculate_covariance_on(the_labels, the_data, naive = False):
         #print(dimensions);
         identity = numpy.eye(dimensions, dtype=int);
         #covariances = {k: numpy.multiply(v, identity) for k, v in covariances.items()}
-        covariances = dict();
+        new_covariances = dict();
         for k, v in covariances.items(): 
-            covariances[k] = numpy.multiply(v, identity);
+            new_covariances[k] = numpy.multiply(v, identity);
         #for k, v in covariances.items():
             #print(v);
+        covariances = new_covariances;
     return covariances;
     
 

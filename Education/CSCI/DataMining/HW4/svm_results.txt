@@ -1,0 +1,9 @@
+For Linear Classifier:
+    Best scores at 
+    C =  0.59
+    mean :  0.990825688073 , std :  0.00374539716022
+
+For RBF Classifier:
+    Best scores at 
+    C =  1.4  and gamma =  1.25
+    mean :  1.0 , std :  0.0

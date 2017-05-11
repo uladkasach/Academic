@@ -1,14 +1,24 @@
 priors:
-A:0.40
-B:0.60
+Iris-setosa:0.33
+Iris-versicolor:0.33
+Iris-virginica:0.33
 
 means:
-A:4.75,8.50
-B:1.33,0.50
+Iris-setosa:5.01,3.42,1.46,0.24
+Iris-versicolor:5.94,2.77,4.26,1.33
+Iris-virginica:6.59,2.97,5.55,2.03
 
 covariances:
-A:0.06,-0.12
-A:-0.12,0.25
-B:0.22,0.17
-B:0.17,0.17
+Iris-setosa:0.12,0.00,0.00,0.00
+Iris-setosa:0.00,0.14,0.00,0.00
+Iris-setosa:0.00,0.00,0.03,0.00
+Iris-setosa:0.00,0.00,0.00,0.01
+Iris-versicolor:0.26,0.00,0.00,0.00
+Iris-versicolor:0.00,0.10,0.00,0.00
+Iris-versicolor:0.00,0.00,0.22,0.00
+Iris-versicolor:0.00,0.00,0.00,0.04
+Iris-virginica:0.40,0.00,0.00,0.00
+Iris-virginica:0.00,0.10,0.00,0.00
+Iris-virginica:0.00,0.00,0.30,0.00
+Iris-virginica:0.00,0.00,0.00,0.07
 
