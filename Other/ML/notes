@@ -1,0 +1,28 @@
+Graph Mining
+
+- Community Detection
+- Link Prediction
+- Vertx Labeling
+- Centrality Analysis
+    - how important is a given vertex 
+    - centrality ~= importance
+    - Different kinds of centrality
+        - degree centrality
+        - distrance centrality
+        - betweenness centrality
+            - fraction of shortest path that goes throug htaht vertex
+            - came from real life understanding, e.g., panama canal is important even though it does not have many conncetions between connecting two communitiesf
+        - eigenvector centrality
+            - similar to random walk probability
+    - Approximate solution is usually required due to large ammount of nodes / verticies
+- Random walk on graphs
+    - computes probablility  of being at a vertex
+    - probability is directly proportional to (# of degrees of node)/(sum of degrees in graph)
+    - Page rank finds authority of pages based on random walks of graph
+        - since this approximates the percentage of degrees / total degrees on internet per page
+- Frequent subgraph mining
+
+
+
+
+Deep walk
