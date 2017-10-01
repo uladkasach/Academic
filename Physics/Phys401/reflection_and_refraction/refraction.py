@@ -35,33 +35,70 @@ measured_pairs = [
     ],
     [
         [5, 0.05],
+        [5, 0.05],
+        [5, 0.05],
+        [5, 0.05],
+        [10, 0.1],
+        [10, 0.1],
+        [10, 0.1],
         [10, 0.1],
         [15, 0.15],
+        [15, 0.15],
+        [15, 0.15],
+        [15, 0.15],
         [20, 0.2],
+        [20, 0.2],
+        [20, 0.2],
+        [20, 0.25],
+        [25, 0.3],
+        [25, 0.3],
+        [25, 0.3],
         [25, 0.3],
         [30, 0.35],
+        [30, 0.35],
+        [30, 0.35],
+        [30, 0.35],
+        [35, 0.45],
+        [35, 0.45],
+        [35, 0.45],
         [35, 0.45],
     ]
     
 ]
 
+'''
+
+       5  & 0.5 & 0.5 & 0.5 & 0.5 \\
+       10 & 1.0 & 1.0 & 1.0 & 1.0  \\
+       15 & 1.5 & 1.5 & 1.5 & 1.5 \\
+       20 & 2.0 & 2.0 & 2.0 & 2.5 \\
+       25 & 3.0 & 3.0 & 3.0 & 3.0 \\
+       30 & 3.5 & 3.5 & 3.5 & 3.5 \\
+       35 & 4.5 & 4.5 & 4.5 & 4.5 \\
+
+'''
+
 thickness = [
     5.2,
     2.0
+]
+origin_position = [
+    2, 
+    0
 ]
 
 measurements_index = 0;
 n_1 = 1;
 measured_pairs = measured_pairs[measurements_index];
 thickness = thickness[measurements_index];
-origin_position = 2;
+origin_position = origin_position[measurements_index];
 
 results = [];
 for pair in measured_pairs:
     theta = pair[0];
     theta_in_radians = theta * np.pi / 180;
     position = pair[1];
-    seperation = origin_position - position;
+    seperation = np.abs(origin_position - position);
     result = calculate_n_2(seperation, thickness, n_1, theta_in_radians);
     print("theta : " + str(theta) + ", seperation : " + str(seperation) + " -> n_2 : " + str(result));
     results.append(result);
@@ -69,3 +106,4 @@ for pair in measured_pairs:
     
 print("Mean " + str(np.mean(results)));
 print("Standard Deviation " + str(np.std(results)));
+print("pairs " + str(len(measured_pairs)));

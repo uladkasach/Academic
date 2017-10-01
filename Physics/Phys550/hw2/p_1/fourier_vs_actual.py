@@ -28,16 +28,16 @@ def calculate_difference_at_n_and_save_plot(n, x):
         actual_values.append(a_val);
         fourier_values.append(f_val);
 
-    if(n % 25 == 0 or n < 25):
+    if(n % 25 == 0):
         plt.cla()
-        plt.title("actual vs fourier at n = " + str(n))
         plt.plot(x, actual_values);  
         plt.plot(x, fourier_values);  
         plt.savefig("results/figure_for_"+str(n)+".png");
+        #plt.show()
         
     actual_values = np.array(actual_values);
     fourier_values = np.array(fourier_values);
-    return np.sqrt(np.mean(((actual_values - fourier_values)**2)));
+    return np.sum(np.abs(actual_values - fourier_values));
 
 
 ## calculate differences
@@ -51,7 +51,7 @@ for n in np.arange(5, 255, 5):
 ## plot differences
 plt.cla()
 plt.title("Fourier Series vs Actual Function")
-plt.ylabel("Root Mean Squared Error")
+plt.ylabel("Sum of Absolute Difference")
 plt.xlabel("n")
 plt.plot(list_n, list_difference);  
 plt.savefig("results/_differences.png");
