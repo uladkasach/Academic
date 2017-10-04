@@ -177,8 +177,8 @@ def plot_density_now(x_range, densities):
 #######################################################################
 ## create a movie of the probability density over time
 #######################################################################
-min_t = 5;
-max_t = 6;
+min_t = 1;
+max_t = 2;
 t_step_size = 1;
 min_x = -5;
 max_x = 8;

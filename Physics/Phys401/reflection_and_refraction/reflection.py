@@ -11,7 +11,25 @@ def calculate_n_2(s, t, n_1, theta_1):
     print(theta_2 * 180 / np.pi);
     print("ideal theta2 = " + str(np.arcsin((1/1.5)*np.sin(theta_1))));
     n_2 = n_1*np.sin(theta_1)/np.sin(theta_2);
-    return n_2;
+    return [theta_2, n_2];
+
+def calculate_imprecision_of_both(s, t, n_1, theta_1, delta_theta_1, delta_n1, delta_t, delta_distance):
+    distance = s;
+    
+    theta_2 = np.arctan((s/(2*t*np.sin(np.pi/2 - theta_1))));
+    n_2 = n_1*np.sin(theta_1)/np.sin(theta_2);
+    
+    delta_theta_2 = (-1)*(delta_theta_1 * np.tan(theta_1) + delta_t * t**(-1) + delta_distance*distance**(-1))/ float((1/float(np.cos(theta_2)))*(1/float(np.sin(theta_2))));
+    
+    print(delta_n1 * np.sin(theta_1))
+    print(delta_theta_1 * n_1 * np.cos(theta_1))
+    print(delta_theta_2 * n_2 * np.cos(theta_2))
+    print(float(np.sin(theta_2)))
+    delta_index = (delta_n1 * np.sin(theta_1) +  delta_theta_1 * n_1 * np.cos(theta_1) - delta_theta_2 * n_2 * np.cos(theta_2) ) / float(np.sin(theta_2))
+
+    return [delta_theta_2, delta_index]
+    
+    
 
 measured_pairs = [
     [
@@ -92,16 +110,37 @@ measured_pairs = measured_pairs[measurements_index];
 thickness = thickness[measurements_index];
 origin_position = 2;
 
-results = [];
-for pair in measured_pairs:
-    theta = pair[0];
-    theta_in_radians = theta * np.pi / 180;
-    seperation = pair[1];
-    result = calculate_n_2(seperation, thickness, n_1, theta_in_radians);
-    print("theta : " + str(theta) + ", seperation : " + str(seperation) + " -> n_2 : " + str(result));
-    results.append(result);
+## precision units
+delta_theta_1 = 1; ## resolution of 1 degree 
+delta_t = 0.5; ## resolution of 0.5mm
+delta_distance = 0.5; ## resolution of 0.5 mm
+delta_n1 = 0;
+
+if(False):
+    results = [];
+    column_titles = ["theta_2", "n2"];
+    for pair in measured_pairs:
+        theta = pair[0];
+        theta_in_radians = theta * np.pi / 180;
+        seperation = pair[1];
+        result = calculate_n_2(seperation, thickness, n_1, theta_in_radians);
+        print("theta : " + str(theta) + ", seperation : " + str(seperation) + " -> n_2 : " + str(result[1]));
+        results.append(result);
+else:
+    column_titles = ["delta_theta_2", "delta_n2"];
+    # calculate precision
+    results = [];
+    for pair in measured_pairs:
+        theta = pair[0];
+        theta_in_radians = theta * np.pi / 180;
+        seperation = pair[1];
+        result = calculate_imprecision_of_both(seperation, thickness, n_1, theta_in_radians, delta_theta_1, delta_n1, delta_t, delta_distance);
+        print("theta : " + str(theta) + ", seperation : " + str(seperation) + " ->  delta_n2 : " + str(result[1]));
+        results.append(result);
     
-    
-print("Mean " + str(np.mean(results)));
-print("Standard Deviation " + str(np.std(results)));
-print("pairs " + str(len(measured_pairs)));
+results = np.array(results);
+for index, column in enumerate(results.T):
+    print("for " + column_titles[index]);
+    print("Mean " + str(np.mean(column)));
+    print("Standard Deviation " + str(np.std(column)));
+    print("pairs " + str(len(measured_pairs)));
