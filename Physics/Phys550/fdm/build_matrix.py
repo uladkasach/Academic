@@ -1,18 +1,26 @@
 ## note, must be tested against something with known value, like infinite square well
 '''
-    
+
     matrix
         M = matrix
         Psi = vector (eigenfunctions = eigenvectors)
-        E = vector (eigenvalues) 
+        E = vector (eigenvalues)
         M * Psi
-    
+
     linear interpolation
         - spline interpolation integration
-        
-    normalization 
-        int modsquared psi_found = int |A|^2 psi_normalized = A^2 -> psi_normalized = 1/sqrt(A) psi_found 
 
+    normalization
+        int modsquared psi_found = int |A|^2 psi_normalized = A^2 -> psi_normalized = 1/sqrt(A) psi_found
+
+
+        NOTE: h_bar^2/2m is not defined
+
+        conversion factor - x = x/a s.t. in real space potential is between 0 and a
+        then eigenvalues are 1/a^2 -> but when transforming into actual energy, keep track that x_max represents a
+        for potential to, when potential must be in units of energy
+
+Note - with time evolution must choose correct order of magnitude of delta_t
 '''
 
 
@@ -25,7 +33,7 @@ from scipy import linalg as linalg;
 import matplotlib.pyplot as plt;
 from scipy.interpolate import UnivariateSpline;
 from scipy.integrate import simps;
-
+import pickle;  # for caching
 
 ## scipy.sparse.linalg.eigs - https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigs.html
 
@@ -34,100 +42,133 @@ def build_matrix(n, delta, v_list):
     for diagonal_index in range(n):
         # main diagonal element
         H_matrix[diagonal_index, diagonal_index] = (2/float(delta**2)) + v_list[diagonal_index];
-        
+
         # lower off diagonal
         lower_off_diagonal = diagonal_index - 1;
         #print(lower_off_diagonal);
         if(lower_off_diagonal >= 0):
             H_matrix[diagonal_index, lower_off_diagonal] = (-1)*(1/float(delta**2));
-        
+
         # higher off diagonal
         higher_off_diagonal = diagonal_index + 1;
         #print(higher_off_diagonal);
         if(higher_off_diagonal < n):
             H_matrix[diagonal_index, higher_off_diagonal] = (-1)*(1/float(delta**2));
-        
+
     print(H_matrix.todense())
     return H_matrix;
-    
 def solve_matrix(matrix):
     #n = matrix.shape[0];
-    
     if(False):
         e_vals, e_vecs = sparce_linalg.eigs(matrix);
-    
+
     if(True):
         matrix = matrix.todense();
         e_vals, e_vecs = linalg.eig(matrix);
-        
+
         ## sort eigvals in increasing and sort vecs by same index
         idx = e_vals.argsort()
         e_vals = e_vals[idx]
         e_vecs = e_vecs[:,idx]
-        
+
         print(e_vecs.shape)
         vecs = [];
         for i in range(e_vecs.shape[0]):
             vecs.append(e_vecs[:, i]);
         e_vecs = vecs;
-            
+
     #print(e_vals);
     #print(e_vecs);
     return [e_vals, e_vecs];
-    
-def plot_eigenvectors(vectors):
+
+
+def plot_eigenvectors(vectors, x_list):
     fig = plt.figure()
     ax = plt.axes()
     for vector in vectors:
-        ax.plot(range(len(vector)), np.absolute(vector)**2);
-    plt.show()
-    
+        ax.plot(x_list, np.absolute(vector)**2);
+    plt.show(block=False)
 
-def normalize_eigenvectors(vectors, x_list):    
+
+def plot_spline(spline, x_list):
+    xs = x_list;
+    #print(range(n))
+    ys = spline(xs);
+    fig = plt.figure()
+    plt.plot(xs, ys)
+    plt.show(block=False)
+
+def normalize_eigenvectors(vectors, x_list):
     ## integrate over spline interpolation of each vector, return the normalization factor, divide each vector by the normalization constant
-    
+
+    print(a);
+    normalized_vectors = [];
     ## note, for infinite well normalization coefficient = sqrt(2/a)
-    print("should be : " + str(np.sqrt(2/float(10))))
     for eig_function in vectors:
-        spl = UnivariateSpline(x_list, np.absolute(eig_function)**2);
+        spl = UnivariateSpline(x_list, np.absolute(eig_function)**2, s=0);
         integral = spl.integral(x_min, x_max)
         coefficient = 1/np.sqrt(integral); ## since integral over psi*psi should be 1
         print("spline.integral : " + str(coefficient));
-        
-        integral_simps = simps(np.absolute(eig_function)**2, x_list);
-        coefficient = 1/np.sqrt(integral); ## since integral over psi*psi should be 1
-        print("simpso.integral : " + str(coefficient));
-    
-    
+
+        #plot_eigenvectors([eig_function], x_list);
+        #plot_spline(spl, x_list);
+
+        if(False):
+            integral = simps(np.absolute(eig_function)**2, x_list);
+            coefficient = 1/np.sqrt(integral); ## since integral over psi*psi should be 1
+            print("simpso.integral : " + str(coefficient));
+
+        normalized_vectors.append(eig_function*coefficient);
+
+
+
+    return normalized_vectors;
+
 x_max = 10;
 x_min = 0;
-a = x_max - x_min;
 n = 1000;
 delta_x = (x_max - x_min)/float(n);
+a = (x_max - x_min)/float(delta_x);
 x_list = [delta_x*this_n for this_n in range(n)];
-print(x_list);
 print("N : " + str(n));
 print("delta_x -> " + str(delta_x));
-v_list = [0]*n; # 
+v_list = [0]*n; #
 
+load_from_cache = dict({
+    "eigen" : True,
+});
 
 ## build matrix
 print ("building matrix");
 H_matrix = build_matrix(n, delta_x, v_list);
 #print(H_matrix);
 
-print ("solve matrix");
-vals, vecs = solve_matrix(H_matrix);
+if(load_from_cache["eigen"] == False):
+    print ("solve matrix");
+    vals, vecs = solve_matrix(H_matrix);
+    with open('.cache/vals.pk', 'wb+') as handle:
+        pickle.dump(vals, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    with open('.cache/vecs.pk', 'wb+') as handle:
+        pickle.dump(vecs, handle, protocol=pickle.HIGHEST_PROTOCOL)
+else:
+    with open('.cache/vals.pk', 'rb') as handle:
+        vals = pickle.load(handle)
+    with open('.cache/vecs.pk', 'rb') as handle:
+        vecs = pickle.load(handle)
+
 ## eigen values should be of form n^2*np.pi^2/a^2
 print([n**2 * np.pi**2 / a**2 for n in [1,2,3]])
 #print(vals);
-print(vals);
+print(vals[:3]);
 
 
 #print ("plot vectors");
 #plot_eigenvectors(vecs[:2]);
 
 print("normalize");
-print(x_list);
-normalize_eigenvectors(vecs[:2], x_list);
+#print(x_list);
+vecs = normalize_eigenvectors(vecs[:2], x_list);
+vecs = normalize_eigenvectors(vecs[:2], x_list);
 
+plot_eigenvectors(vecs, x_list);
+plt.show();
