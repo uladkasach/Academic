@@ -67,6 +67,46 @@ def calculate_image_pos_with_numpy_matmul(s, L_1, L_2, f_1, f_2, f_3):
     return [s_prime, focal_len];
 
 
+lens_1_pos = [354, 378, 362, 395, 439, 418, 400, 340, 348, 320];
+object_distance = 354-209;
+L_1 = 38;
+L_2 = 38;
+f_1 = 48;
+f_2 = -22;
+f_3 = 48;
+
+for pos in lens_1_pos:
+    object_distance = pos - 209;
+    results = calculate_image_pos_with_numpy_matmul(object_distance, L_1, L_2, f_1, f_2, f_3);
+    print(results);
+    print(pos + 38*2 + results[0]);
+
+
+'''
+# 5.5mm delta
+delta = 5.5;
+lens_1_pos = 700 + delta; #L_1
+lens_2_pos = 520 + delta; #L_d
+lens_3_pos = 379 + delta ; #_2
+
+
+object_position = [836, 756]
+
+object_distance = 756 - lens_1_pos;
+L_1 = lens_1_pos - lens_2_pos;
+L_2 = lens_2_pos - lens_3_pos;
+f_1 = 130.33 #mm
+f_2 = -22 #mm
+f_3 = 129.92 #mm
+'''
+
+'''
+    midlle of lens not helping
+'''
+
+
+exit();
+
 lens_1_pos = 650; #L_1
 lens_2_pos = 594; #L_d
 lens_3_pos = 320 ; #_2
