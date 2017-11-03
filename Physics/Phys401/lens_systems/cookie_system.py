@@ -5,39 +5,6 @@ import json;
     M = R_3 * T_2 * R_2 * T_1 * R_1
 '''
 
-
-def calculate_image_pos(s, L_1, L_2, f_1, f_2, f_3):
-    return False;
-    s = float(s);
-    L_1 = float(L_1);
-    L_2 = float(L_2);
-    f_1 = float(f_1);
-    f_2 = float(f_2);
-    f_3 = float(f_3);
-
-
-
-    part_1 = (1 - L_1/f_1);
-    part_2 = (-1)*part_1*(1/f_2) - 1/f_1;
-
-    res = np.array([[part_1, L_1], [-1/f_1, 1]])
-    print("--");
-    print(res);
-    return;
-
-
-    M1 =  part_1 + L_2 * part_2;
-    M2 = L_1 + L_2 * part_1;
-    M3 = (-1/f_3)*(part_1 + L_2*part_2) + part_2;
-    M4 = (-1/f_3)*(L_1 + L_2*part_1 + part_1);
-
-    print(1/M3);
-
-    s_prime = (s*M1 + M2) / (s*M3 + M4);
-
-    return s_prime;
-
-
 def calculate_image_pos_with_numpy_matmul(s, L_1, L_2, f_1, f_2, f_3):
     s = float(s);
     L_1 = float(L_1);
