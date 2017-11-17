@@ -17,7 +17,7 @@ values = [
 ]
 
 
-measurement_set = 3;
+measurement_set = 1;
 ## difference for of 19 angles
 if(measurement_set == 1):
     ## for two polarizers, theta is theta difference
@@ -53,7 +53,7 @@ if(measurement_set == 1):
         (30, 7.4),
     ]);
     measurements[:, 1] = measurements[:, 1]/np.max(measurements[:, 1]); ## normalize to zero
-    measurements[:, 0] = measurements[:, 0] - measurements[np.argmax(measurements[:, 1]), 0];
+    measurements[:, 0] = measurements[:, 0] - measurements[np.argmax(measurements[:, 1]), 0] + 180;
 
 elif(measurement_set == 2):
     ## polarizer 1
