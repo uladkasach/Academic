@@ -17,9 +17,21 @@ values = [
 ]
 
 
+
+
+def normalize_measurements(measurements):
+    measurements[:, 1] = measurements[:, 1]/np.max(measurements[:, 1]); ## normalize to zero
+    measurements[:, 0] = measurements[:, 0] - measurements[np.argmax(measurements[:, 1]), 0];
+    for index, theta in enumerate(measurements[:, 0]):
+        if(theta < 0): measurements[index, 0] = theta+360;
+        if(theta > 360): measurements[index, 0] = theta - 360;
+
+    measurements = measurements[measurements[:,0].argsort()]
+    return measurements;
+
 measurement_set = 1;
-## difference for of 19 angles
-if(measurement_set == 1):
+measures = dict({})
+if(measurement_set == 1 or measurement_set == "ALL"):
     ## for two polarizers, theta is theta difference
     measurements = np.array([
         (0, 8),
@@ -46,17 +58,18 @@ if(measurement_set == 1):
         (315, 1.61),
         (330, 3.4),
         (345, 5.54),
-        (0, 6.95),
+        (360, 6.95),
         (15, 7.9),
         (30, 7.5),
         (15, 7.89),
         (30, 7.4),
     ]);
-    measurements[:, 1] = measurements[:, 1]/np.max(measurements[:, 1]); ## normalize to zero
-    measurements[:, 0] = measurements[:, 0] - measurements[np.argmax(measurements[:, 1]), 0] + 180;
+    measurements = normalize_measurements(measurements);
+    measures[measurement_set] = measurements;
 
-elif(measurement_set == 2):
+if(measurement_set == 2 or  measurement_set == "ALL"):
     ## polarizer 1
+    index = 2;
     measurements = np.array([
         (0, 5),
         (15, 6.4),
@@ -72,7 +85,7 @@ elif(measurement_set == 2):
         (165, 3.95),
         (180, 5.25),
         (195, 6.8),
-        (205, 7.3),
+        #(205, 7.3),
         (210, 7.4),
         (225, 7.45),
         (240, 7.4),
@@ -83,13 +96,15 @@ elif(measurement_set == 2):
         (315, 2.5),
         (330, 2.79),
         (345, 3.85),
-        (360, 5)
+        #(360, 5)
 
     ]);
-    measurements[:, 1] = measurements[:, 1]/np.max(measurements[:, 1]);
-    measurements[:, 0] = measurements[:, 0] - measurements[np.argmax(measurements[:, 1]), 0];
-elif(measurement_set == 3):
+    measurements = normalize_measurements(measurements);
+    measures[index] = measurements;
+
+if(measurement_set == 3 or measurement_set == "ALL"):
     ## polarizer 2
+    index = 3;
     measurements = np.array([
         (0, 5),
         (15, 6),
@@ -97,7 +112,7 @@ elif(measurement_set == 3):
         (45, 6.21),
         (60, 6.2),
         (75, 5.85),
-        (95, 4.3),
+        #(95, 4.3),
         (90, 4.6),
         (105, 3.7),
         (120, 2.95),
@@ -116,11 +131,10 @@ elif(measurement_set == 3):
         (315, 3),
         (330, 3.3),
         (345, 4),
-        (0, 4.85),
+        #(360, 4.85),
     ]);
-    measurements[:, 1] = measurements[:, 1]/np.max(measurements[:, 1]); ## normalize to zero
-    measurements[:, 0] = measurements[:, 0] - measurements[np.argmax(measurements[:, 1]), 0] + 180;
-
+    measurements = normalize_measurements(measurements);
+    measures[index] = measurements;
 
 
 #####
@@ -136,6 +150,30 @@ def mauses_law(max_intensity, theta_in_degrees):
     return max_intensity*np.cos(theta_in_radians)**2;
 
 ###
+'''
+if(measurement_set == "ALL"):
+    for index, pair in enumerate(measures[2]):
+        print("{0:.0f}".format(pair[0]) +  " & " + "{0:.3f}".format(pair[1])  +  " & " + "{0:.3f}".format(measures[3][index][1]) + "\\\\");
+    exit();
+'''
+
+## rmse
+if(True):
+    differences = [];
+    for pair in measurements:
+        differences.append((pair[1] - mauses_law(1, pair[0]))**2);
+    mean = np.mean(differences);
+    rmse = np.sqrt(mean);
+    print("RMSE : ");
+    print(rmse);
+    exit();
+
+for pair in measurements:
+    malus_law_expected =  " & " + "{0:.3f}".format(mauses_law(1, pair[0])) ;
+    data_string = "{0:.0f}".format(pair[0]) +  " & " + "{0:.3f}".format(pair[1])  + malus_law_expected + "\\\\";
+    print(data_string);
+
+
 range = np.arange(0, 360, 0.1);
 intensity = [mauses_law(1, this_theta) for this_theta in range];
 
