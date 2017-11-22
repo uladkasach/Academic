@@ -149,6 +149,45 @@ def mauses_law(max_intensity, theta_in_degrees):
     theta_in_radians = theta_in_degrees * np.pi/180;
     return max_intensity*np.cos(theta_in_radians)**2;
 
+
+
+
+
+
+
+def log_error(intensity, theta_in_degrees, delta_theta):
+    theta_in_radians = theta_in_degrees * np.pi / float(180);
+    print("theta:" + str(theta_in_radians));
+    print("tan:" + str(np.tan(theta_in_radians)));
+    print("intensity:" + str(intensity));
+    error = -2 * intensity * np.tan(theta_in_radians) * float(delta_theta);
+    print("error : " + str(error));
+    return error;
+
+
+## log errors
+if(True):
+    errors = [];
+    for pair in measurements:
+        print("--------");
+        print("pre theta: " + str(pair[0]));
+        method = 3;
+        if(method == 1):
+            theta = pair[0] % 180; ## from 0 to 90 transform theta
+            if(theta > 90): theta = (-1)*(theta - 180) ## converts 110 degrees to 20
+            if(theta == 90): theta = 0;
+        elif method == 2:
+            theta = pair[0] % 90;
+        else:
+            theta = pair[0];
+        print("post theta: " + str(theta));
+        errors.append(log_error(pair[1], theta, 1));
+        print("--------");
+    mean = np.mean(errors);
+    std = np.std(errors);
+    print(mean);
+    print(std);
+exit();
 ###
 '''
 if(measurement_set == "ALL"):
