@@ -72,11 +72,15 @@ def wavelength(d, x_0, y_0, n, y_n):
 measurements = normalize_measurements(bar_width, measured);
 
 
-ns = np.arange(1, 17, 1);
+ns = np.arange(1, 8, 1);
 lens = [];
 for n in ns:
     len = wavelength(d, x_0, measurements["0"], n, measurements[str(n)])*10**9;
     lens.append(len);
+
+
+print("mean:");
+print(np.mean(lens))
 
 exp = [];
 for n in ns:
