@@ -124,18 +124,26 @@ def normalize_eigenvectors(vectors, x_list):
 
     return normalized_vectors;
 
-x_max = 10;
-x_min = 0;
+x_max = 10; # angstrom
+x_min = 0; # angstrom
 n = 1000;
 delta_x = (x_max - x_min)/float(n);
-a = (x_max - x_min)/float(delta_x);
+a = (x_max - x_min);
 x_list = [delta_x*this_n for this_n in range(n)];
 print("N : " + str(n));
 print("delta_x -> " + str(delta_x));
-v_list = [0]*n; #
 
+if(False): ## infinite square well potential
+    v_list = [0]*n;
+else:
+    E_n_inf_square_well = 50**2 * np.pi**2 / a**2;
+    V_0 = E_n_inf_square_well;
+    v_list = [0]*n;
+    for index in np.arange(int(n/2), n, 1): # from n/2 to n in steps of 1
+        v_list[index] = V_0; ## set the potential to be equal to V_0
+    #print(v_list);
 load_from_cache = dict({
-    "eigen" : True,
+    "eigen" : False,
 });
 
 ## build matrix
@@ -157,12 +165,14 @@ else:
         vecs = pickle.load(handle)
 
 ## eigen values should be of form n^2*np.pi^2/a^2
+print("Eigenvalues should have these values: ");
 print([n**2 * np.pi**2 / a**2 for n in [1,2,3]])
 #print(vals);
+print("Calculated eigenvalues:");
 print(vals[:3]);
 
-
-#print ("plot vectors");
+print(" ");
+print("plot vectors");
 #plot_eigenvectors(vecs[:2]);
 
 print("normalize");
