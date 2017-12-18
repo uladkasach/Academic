@@ -1,14 +1,15 @@
 import numpy as np;
 import matplotlib.pyplot as plt;
+import math;
 
 ## find effective slit width and determine whether this improves plot matching
 ## fraunhoffer on side between slit and screen, focal length
 
 ## optical hole is 4 mm
-slit = 2
+slit = 1
 if(slit == 1):
     # apperature - 0.1 mm - results in accurate readings, so light is only incident from that point
-    slit_width = 0.04 * 10 **(-3); ## mm
+    slit_width = 0.047 * 10 **(-3); ## mm ## actual value was 0.04mm
     wavelength = 633 * 10**(-9); ## nm
     distance = (924-374) * 10**(-3) ## mm ----------------------- may be source of imprecision
     comparison_range = (-20, 20);
@@ -213,18 +214,97 @@ def scalar(y_value, distance, slit_width, wavelength):
     scalar = scalar**2;
     return scalar;
 
+
+def return_minimas(data, threshold = 0.025):
+    ordered_data = sorted(data, key=lambda x: x[0]) ## order by position
+    print(ordered_data);
+
+    # detect if there exists a higher value in both directions of the point, if not then its not a minima
+
+    minimas = [];
+    for index, pair in enumerate(ordered_data):
+        if(index == 0 or index == len(ordered_data) - 1): continue; # if most left or most right skip1
+        this_pair = pair;
+        prev_pair = ordered_data[index-1];
+        next_pair = ordered_data[index+1];
+        if(this_pair[1] < next_pair[1] and this_pair[1] < prev_pair[1] and this_pair[1] <= threshold): ## if prev is larger and next is larger, this is min
+            print(prev_pair);
+            print(next_pair);
+            print(this_pair);
+            print("---");
+            minimas.append(pair);
+    minimas = np.array(minimas);
+    return minimas;
+
+
+def reject_outliers(data, m=2):
+    data = np.array(data);
+    return data[abs(data - np.mean(data)) < m * np.std(data)]
+
+def log_error(y, d, I, b, wavelength):
+    delta_y = 0.5*10**(-3);
+    delta_d = 1*10**(-3);
+
+    gamma = np.sqrt(d**2 + y**2)**(-1);
+    beta = np.pi * slit_width / float(wavelength) * y * gamma;
+
+    delta_beta = (np.pi / float(wavelength)) * (b * delta_y * gamma - 0.5*b*y*gamma**3*2*(d*y**2*delta_d + y*d**2*delta_y) )
+    total = 2 * I * (np.cos(beta) * delta_beta / np.sin(beta) - delta_beta / beta)
+    return total;
+
+
+if(False):
+    log_errors_total = [];
+    differences = [];
+    for index in range(len(measurements)):
+        this_x = measurements[index, 0];
+        this_y = measurements[index, 1];
+        expected_y = scalar(this_x, distance, slit_width, wavelength);
+        if(math.isnan(expected_y)): continue;
+        difference_squared = (this_y - expected_y)**2;
+        differences.append(difference_squared);
+        if(difference_squared < 0.01): continue;
+        #print("p:" + str(this_x));
+        #print("a:" + str(this_y));
+        #print("x:" + str(expected_y));
+        #print("----" + str(difference_squared))
+        #print(str(this_x*10**3) + "& "  + str(round(this_y*100)/float(100)) + "\\\\");
+        this_log_error = log_error(this_x, distance, this_y, slit_width, wavelength);
+        log_errors_total.append(this_log_error);
+    differences = reject_outliers(differences);
+    mean = np.mean(differences);
+    rmse = np.sqrt(mean);
+    print("RMSE : ");
+    print(rmse);
+
+    mean = np.mean(log_errors_total);
+    print("LogErrors : ");
+    print(mean);
+    exit();
+
+
+
+minimas = return_minimas(measurements);
+print(minimas);
+
+
+
+
 x = np.arange(-40, 40, 0.05)*10**(-3);
 y = [scalar(this_x, distance, slit_width, wavelength) for this_x in x];
 
-y_test2 = [scalar(this_x, distance+90*10**(-3), slit_width, wavelength) for this_x in x];
+#y_test2 = [scalar(this_x, distance+90*10**(-3), slit_width, wavelength) for this_x in x];
 
 measured_x = measurements[:, 0];
 measured_y = measurements[:, 1];
 
+minimum_x = minimas[:, 0];
+minimum_y = minimas[:, 1];
 
 fig, ax = plt.subplots()
 ax.scatter(x, y, alpha=0.2);
 #ax.scatter(x, y_test2, color="blue", alpha=0.2);
 ax.scatter(measured_x, measured_y, color="red");
+ax.scatter(minimum_x, minimum_y, color="blue");
 
 plt.show()

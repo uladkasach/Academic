@@ -58,7 +58,7 @@ def normalize_measurements(bar_width, measurements):
 
 ## calc wavelength
 def wavelength(d, x_0, y_0, n, y_n):
-    ## convert all to mm
+    ## convert all to m
     millimeter = 10**(-3);
     d = d*millimeter;
     x_0 = x_0*millimeter;
@@ -68,17 +68,40 @@ def wavelength(d, x_0, y_0, n, y_n):
     lamb = (d / float(2 * n)) * (y_n**2 - y_0**2) / float(x_0**2)
     return lamb;
 
+def log_error(y_n, y_0, wavelength, x_0):
+    wavelength = wavelength*10**(-9) # convert to m's
+    millimeter = 10**(-3); # cnvert rest to m
+    x_0 = x_0*millimeter;
+    y_0 = y_0*millimeter;
+    y_n = y_n*millimeter;
+
+    delta_y = 1*millimeter;
+    delta_x = 5*millimeter;
+    part_1 = (delta_y * y_n - delta_y * y_0)/float(y_n**2 - y_0**2)
+    part_2 = -2 * delta_x / float(x_0);
+    print("part 1 error:" + str(part_1));
+    print("part 2 error:" + str(part_2));
+    print("total error :" + str(part_1 + part_2));
+    error = wavelength * 2 * (part_1 + part_2) ;
+    return error* 10**(9) ; #convert to nm
 
 measurements = normalize_measurements(bar_width, measured);
-
-
-ns = np.arange(1, 8, 1);
+print(measurements);
+print("---");
+print( measurements["0"]);
+ns = np.arange(1, 14, 1);
 lens = [];
+errors = [];
 for n in ns:
     len = wavelength(d, x_0, measurements["0"], n, measurements[str(n)])*10**9;
+    print(str(n) + "&" + str(measurements[str(n)]) + "&" + str(round(len*100)/float(100)) + "\\\\");
     lens.append(len);
+    this_error = log_error(measurements[str(n)], measurements["0"], len, x_0);
+    errors.append(this_error);
 
-
+print("log errrors mean:");
+print(np.mean(errors));
+exit();
 print("mean:");
 print(np.mean(lens))
 
