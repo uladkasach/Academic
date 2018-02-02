@@ -20,13 +20,15 @@ Upload your matlab code (70%) and a 1-page report (30%) of your results (for bet
     - `1` -> `images/source/haiying.jpg`
     - `2` -> `images/source/lihua.jpg`
 - k: cluster count
+- e.g., `python kmeans.py 1 3`
 
 the output is generated in `/images/pred/`
 - example output can be found under `/example/`
 
 **note**: this package caches results. To overwrite cache set the environmental variable `OVERWRITE=true` (e.g., `export OVERWRITE=true`)
 
-
 ## comments:
 it is important to note that even though one selects `k=3`, because of random initialization we may actually detect that we have found `k != 3` unique centroids throughout the `n` iterations we evaluated probabilities on. Therefore, **the output may provide more than `k` output class probability maps.**
-    - however, we only generate probability maps on clusters that receive more than 5% of the pixel assignments total.
+- however, we only generate probability maps on clusters that receive more than 5% of the pixel assignments total.
+    -  due to this, **the output may actually provide less than `k` output class probability maps.**
+- additionally, we map cluster centroids to the same label if the centroids are within 10 units on each of the features (`r`, `g`, and `b`)

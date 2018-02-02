@@ -10,16 +10,55 @@ import os;
 import json;
 
 unique_clusters = dict({});
+unique_cluster_mapper = dict();
+def retreive_label_for_centroid_and_update_clusters(centroid, label = False):
+    if(label == False):
+        label = len(unique_cluster_mapper)
+        unique_cluster_mapper[label] = {"center" : [0, 0, 0], "count": 0}; ## initialize a new label
+        unique_cluster_mapper[label]["center"] = centroid;
+
+    ## DISABLED UPDATING - TAKES TOO MUCH TIME
+
+    ## cluster = unique_cluster_mapper[label];
+    #print(cluster["center"]);
+    #all = [cluster["center"] for _ in range(cluster["count"])];
+    #all.append(centroid);
+    #cluster["center"] = np.mean(np.array(all), axis=0);
+    #cluster["count"] = len(all);
+    #unique_cluster_mapper[label] = cluster;
+    return label;
+
+def within(range, val1, val2):
+    return np.abs(val1 - val2) <= range;
+def map_centroid_to_cluster(centroid):
+    centroid = [int(centroid[0]), int(centroid[1]), int(centroid[2])]
+
+    mapped_label = False;
+    for key, val in unique_cluster_mapper.iteritems():
+        val = val["center"];
+        if(within(10, val[0], centroid[0]) and within(10, val[1], centroid[1]) and within(10, val[1], centroid[1])):
+            mapped_label = key; ## we found the right label
+            break;
+
+    ## retreive label and update centroid
+    label = retreive_label_for_centroid_and_update_clusters(centroid, mapped_label);
+
+
+    ## increment counter
+    if(label not in unique_clusters): unique_clusters[label] = 0; ## keep track of unique cluster id's; we will have to make a probability map for each.
+    unique_clusters[label] += 1; ## keep track of how many times a pixel is mapped to that cluster; we will use this to not make maps of low quality clusters.
+
+    return label;
 
 def map_labels_to_centers(labels, centers):
     new_labels = [];
     for label in labels:
-        new_labels.append(str(centers[label])); ## convert label to a string as well
+        new_labels.append(map_centroid_to_cluster(centers[label])); ## convert label to a string as well
     return new_labels;
 
 def kmeans(image,k):
     print '   running k means...'
-    kmeans = KMeans(n_clusters=k).fit(image)
+    kmeans = KMeans(n_clusters=k, n_jobs=2).fit(image)
     #print kmeans.labels_[:10];
     #print kmeans.cluster_centers_
     labels = kmeans.labels_;
@@ -31,8 +70,6 @@ def aggregate_results(agg, new):
     global unique_clusters;
     if(agg == False): agg = [{} for _ in range(len(new))];
     for index, value in enumerate(new):
-        if(value not in unique_clusters): unique_clusters[value] = 0; ## keep track of unique cluster id's; we will have to make a probability map for each.
-        unique_clusters[value] += 1; ## keep track of how many times a pixel is mapped to that cluster; we will use this to not make maps of low quality clusters.
         if(value not in agg[index]): agg[index][value] = 0;
         agg[index][value] += 1;
     return agg;
@@ -74,10 +111,10 @@ def filter_unique_clusters(clusters, size, iterations):
         pop_clusters.append(key);
     return pop_clusters;
 
-def probability_map(source_path, output_path, k=8, iterations=10):
+def probability_map(source_path, output_path, k=8, iterations=3):
     global unique_clusters;
     print("");
-    print("------ conducting iterative kmeans on " + source_path + " with " + str(iterations) + " iterations ------")
+    print("------ conducting iterative kmeans on " + source_path + " with " + str(k) + " clusters and  " + str(iterations) + " iterations ------")
 
     bool_overwrite = "OVERWRITE" in os.environ and os.environ["OVERWRITE"] == "true"; ## if environmental variable set to overwrite, overwrite
     if(os.path.isfile(output_path) and not bool_overwrite):
@@ -96,6 +133,7 @@ def probability_map(source_path, output_path, k=8, iterations=10):
 
     cache = util.load_from_cache(source_path + str(k) + str(iterations) + ".pkl");
     if(cache == False):
+        print("generating results...");
         full_results = False;
         for index in range(iterations):
             these_results = kmeans(image, k);
@@ -131,4 +169,4 @@ if __name__ == "__main__":
     k_number = sys.argv[2];
 
     source_path, output_path = util.name_gen(image_number, k_number);
-    probability_map(source_path, output_path);
+    probability_map(source_path, output_path, int(k_number));
