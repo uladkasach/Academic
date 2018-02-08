@@ -13,7 +13,9 @@ unique_clusters = dict({});
 unique_cluster_mapper = dict();
 def retreive_label_for_centroid_and_update_clusters(centroid, label = False):
     if(label == False):
+        print("new centroid found: " + str(centroid))
         label = len(unique_cluster_mapper)
+        print("    label : " + str(label))
         unique_cluster_mapper[label] = {"center" : [0, 0, 0], "count": 0}; ## initialize a new label
         unique_cluster_mapper[label]["center"] = centroid;
 
