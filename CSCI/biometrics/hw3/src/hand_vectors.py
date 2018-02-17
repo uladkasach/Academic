@@ -24,7 +24,7 @@ def vector_and_xy(pts, index): ## extract euclidean distance and return x,y pair
     return distance, x_list, y_list;
 
 vector = [];
-for index in range(2):
+for index in range(5):
     index_use = index*2;
     distance, x, y = vector_and_xy(pts, index_use);
     vector.append(distance);
