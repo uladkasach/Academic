@@ -26,3 +26,7 @@ I have attempted disabling my keyboard and found that it is a virtual problem, a
 
 
 Please let me know if I can submit this assignment late after testing on a machine I can aquire tomorrow.
+
+
+UPDATE 2/21/17:
+I have completed this assignemnt on a different machine that was not affected by this bug, as Dr. Tsechpenakis stated he understood the situation and I could submit it late.

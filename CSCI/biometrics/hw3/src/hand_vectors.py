@@ -8,7 +8,7 @@ im = Image.open(src); ## e.g., "source/camel_1.jpg"
 
 plt.imshow(im)
 plt.axis('image')
-pts = plt.ginput(20, 0, mouse_add=1) # it will wait for three clicks
+pts = plt.ginput(22, 0, mouse_add=1) # it will wait for three clicks
 
 print "The point selected are"
 print pts # ginput returns points as tuples
@@ -24,12 +24,12 @@ def vector_and_xy(pts, index): ## extract euclidean distance and return x,y pair
     return distance, x_list, y_list;
 
 vector = [];
-for index in range(5):
+for index in range(11):
     index_use = index*2;
     distance, x, y = vector_and_xy(pts, index_use);
+    print(distance);
     vector.append(distance);
     plt.plot(x,y,'-o');
-
 
 print(vector);
 plt.show()
