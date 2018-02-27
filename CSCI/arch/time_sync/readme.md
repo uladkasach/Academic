@@ -9,3 +9,7 @@ https://github.com/espressif/esp-idf/tree/master/examples/protocols/sntp
 ### free rtos documentation
 - tasks
     - https://www.freertos.org/a00125.html
+    - https://www.freertos.org/implementing-a-FreeRTOS-task.html
+
+
+https://github.com/espressif/esp-idf/tree/master/examples/protocols/sntp

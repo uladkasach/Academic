@@ -21,6 +21,7 @@
 #include "lwip/err.h"
 #include "apps/sntp/sntp.h"
 
+
 /*
     Define WIFI SSID and PASS for usage in wifi
 */
@@ -45,6 +46,12 @@ static const char *TAG_OUTPUT = "output";
  */
 RTC_DATA_ATTR static int boot_count = 0;
 
+/*
+    variables globally defining task handlers
+*/
+xTaskHandle time_update_task_handle;
+xTaskHandle time_output_task_handle;
+
 static void request_time_update(void);
 static void initialize_utilities(void);
 static void initialize_non_volatile_storage(void);
@@ -68,34 +75,84 @@ while( true ) // gotta have infinite loop
 }
 */
 
+static void task_update_internal_time_with_sntp( void *pvParameters )
+{
+    for( ;; )
+    {
+        ESP_LOGI(TAG_RETREIVE, "(!) Starting Update of Internal Wall-Clock Time Again...")
+
+        initialize_utilities();
+        request_time_update();
+
+        const int sleep_sec = 10; // 10 seconds
+        ESP_LOGI(TAG_RETREIVE, "update of wall clock time has completed. entering task wait for %d seconds", sleep_sec);
+        vTaskDelay( sleep_sec * 1000 / portTICK_PERIOD_MS ); // wait / yield time to other tasks
+    }
+}
+
+
+static void display_internal_time( void *pvParameters )
+{
+    for( ;; )
+    {
+        ESP_LOGI(TAG_OUTPUT, "(!) Displaying Internal Time...")
+
+        wait_until_time_updated(); // ensure time is updated before displaying it
+
+        time_t now;
+        struct tm timeinfo;
+        time(&now);
+        char strftime_buf[64];
+
+        // Set timezone to Eastern Standard Time and print local time
+        setenv("TZ", "EST5EDT,M3.2.0/2,M11.1.0", 1);
+        tzset();
+        localtime_r(&now, &timeinfo);
+        strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
+        ESP_LOGI(TAG, "The current date/time in New York is: %s", strftime_buf);
+
+        const int sleep_millisec = 1000;
+        ESP_LOGI(TAG_OUTPUT, "output of time completed. entering task wait for %d milliseconds", sleep_millisec);
+        vTaskDelay( sleep_millisec / portTICK_PERIOD_MS ); // wait / yield time to other tasks
+    }
+}
+
+
 void app_main()
 {
     ++boot_count;
     ESP_LOGI(TAG, "Boot count: %d", boot_count);
 
-    time_t now;
-    struct tm timeinfo;
-    time(&now);
-    localtime_r(&now, &timeinfo);
-    // Is time set? If not, tm_year will be (1970 - 1900).
-    if (timeinfo.tm_year < (2016 - 1900)) {
-        ESP_LOGI(TAG, "Time is not set yet. Connecting to WiFi and getting time over NTP.");
-        initialize_utilities();
-        request_time_update();
-        time(&now); // update 'now' variable with current time
+    BaseType_t xReturned_updateTask;
+    xReturned_updateTask = xTaskCreate(task_update_internal_time_with_sntp,  // pointer to function
+                "time_update_task",        // Task name string for debug purposes
+                8000,            // Stack depth as word
+                NULL,           // function parameter (like a generic object)
+                1,              // Task Priority (Greater value has higher priority)
+                &time_update_task_handle);  // Task handle
+
+    BaseType_t xReturned_outputTask;
+    xReturned_outputTask = xTaskCreate(display_internal_time,  // pointer to function
+                "time_output_task",        // Task name string for debug purposes
+                8000,            // Stack depth as word
+                NULL,           // function parameter (like a generic object)
+                1,              // Task Priority (Greater value has higher priority)
+                &time_output_task_handle);  // Task handle
+
+    if( xReturned_updateTask == pdPASS )
+    {
+        /* The task was created.  Use the task's handle to delete the task. */
+        ESP_LOGI(TAG_RETREIVE, "time updater task started successfully");
+        //vTaskDelete( xHandle );
     }
-    char strftime_buf[64];
 
-    // Set timezone to Eastern Standard Time and print local time
-    setenv("TZ", "EST5EDT,M3.2.0/2,M11.1.0", 1);
-    tzset();
-    localtime_r(&now, &timeinfo);
-    strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
-    ESP_LOGI(TAG, "The current date/time in New York is: %s", strftime_buf);
+    if( xReturned_outputTask == pdPASS )
+    {
+        /* The task was created.  Use the task's handle to delete the task. */
+        ESP_LOGI(TAG_RETREIVE, "time output task started successfully");
+        //vTaskDelete( xHandle );
+    }
 
-    const int deep_sleep_millisec = 1000 * 120;
-    ESP_LOGI(TAG, "Entering deep sleep for %d milliseconds", deep_sleep_millisec);
-    esp_deep_sleep(1000LL * deep_sleep_millisec);
 }
 
 
@@ -206,12 +263,12 @@ static void start_wifi_connection(void)
 {
     ESP_LOGI(TAG_RETREIVE, "starting WiFi radio and connection");
     ESP_ERROR_CHECK( esp_wifi_start() );
-    //ESP_ERROR_CHECK( esp_wifi_connect() );
+    ESP_ERROR_CHECK( esp_wifi_connect() );
 }
 static void stop_wifi_connection(void)
 {
     ESP_LOGI(TAG_RETREIVE, "stopping WiFi radio and connection");
-    //ESP_ERROR_CHECK( esp_wifi_disconnect() );
+    ESP_ERROR_CHECK( esp_wifi_disconnect() );
     ESP_ERROR_CHECK( esp_wifi_stop() );
 }
 static void wait_until_wifi_connected(void){
