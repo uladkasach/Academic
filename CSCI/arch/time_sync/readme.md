@@ -4,3 +4,8 @@ https://howtomechatronics.com/tutorials/arduino/arduino-ds3231-real-time-clock-t
 
 
 https://github.com/espressif/esp-idf/tree/master/examples/protocols/sntp
+
+
+### free rtos documentation
+- tasks
+    - https://www.freertos.org/a00125.html

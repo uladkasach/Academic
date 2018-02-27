@@ -1,10 +1,5 @@
-/* LwIP SNTP example
-
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
+/*
+    This code is based on the LwIP SNTP example
 */
 #include <string.h>
 #include <time.h>
@@ -23,14 +18,11 @@
 #include "lwip/err.h"
 #include "apps/sntp/sntp.h"
 
-/* The examples use simple WiFi configuration that you can set via
-   'make menuconfig'.
-
-   If you'd rather not, just change the below entries to strings with
-   the config you want - ie #define EXAMPLE_WIFI_SSID "mywifissid"
+/*
+    Define WIFI SSID and PASS
 */
-#define EXAMPLE_WIFI_SSID "N300WNR3500L"
-#define EXAMPLE_WIFI_PASS "3175699111gb"
+#define EXAMPLE_WIFI_SSID "Beach Bus" // iwgetid -r
+#define EXAMPLE_WIFI_PASS "Waterfall"
 
 /* FreeRTOS event group to signal when we are connected & ready to make a request */
 static EventGroupHandle_t wifi_event_group;
