@@ -1,6 +1,11 @@
 /*
     This code is based on the LwIP SNTP example
 */
+
+/*
+    time function: https://github.com/espressif/newlib-esp32/blob/master/newlib/libc/time/time.c
+*/
+
 // glibc dependencies:
 #include <string.h>
 #include <time.h>
@@ -52,6 +57,13 @@ RTC_DATA_ATTR static int boot_count = 0;
 xTaskHandle time_update_task_handle;
 xTaskHandle time_output_task_handle;
 
+/*
+    globaly define current time storage objects
+*/
+time_t time_now;
+struct tm time_now_timeinfo;
+char strftime_buf[64];
+
 static void request_time_update(void);
 static void initialize_utilities(void);
 static void initialize_non_volatile_storage(void);
@@ -63,56 +75,74 @@ static void wait_until_wifi_connected(void);
 static void initialise_wifi(void);
 static esp_err_t event_handler(void *ctx, system_event_t *event);
 
-/*
-void do_thing_task( void* p ) // gotta have a void pointer as parameter even if unused
-{
-while( true ) // gotta have infinite loop
-    {
-        // do things
-        ESP_LOGI(TAG, "Boot count: %d", boot_count);
-        vTaskDelay( 1000 / portTICK_PERIOD_MS ) // wait / yield time to other tasks
+
+
+static void set_time_now_to_predefined(){
+    ESP_LOGI(TAG_RETREIVE, "(*) attempting to update time now to a predefined value!")
+    struct timeval now;
+    int rc;
+
+    now.tv_sec=866208142;
+    now.tv_usec=290944;
+
+    rc=settimeofday(&now, NULL);
+    if(rc==0) {
+        ESP_LOGI(TAG_RETREIVE, "    time update successful")
+    }
+    else {
+        ESP_LOGE(TAG_RETREIVE, "    time update failed, errno = %d\n",errno)
     }
 }
-*/
 
 static void task_update_internal_time_with_sntp( void *pvParameters )
 {
+    const int sleep_sec = 60; // 10 seconds
     for( ;; )
     {
         ESP_LOGI(TAG_RETREIVE, "(!) Starting Update of Internal Wall-Clock Time Again...")
 
-        initialize_utilities();
         request_time_update();
+        //set_time_now_to_predefined();
 
-        const int sleep_sec = 10; // 10 seconds
+
         ESP_LOGI(TAG_RETREIVE, "update of wall clock time has completed. entering task wait for %d seconds", sleep_sec);
         vTaskDelay( sleep_sec * 1000 / portTICK_PERIOD_MS ); // wait / yield time to other tasks
     }
 }
 
 
-static void display_internal_time( void *pvParameters )
+static void display_internal_time( void *pvParameters)
 {
+    //ESP_LOGI(TAG_OUTPUT, "(!) Displaying Internal Time...")
+
+    // retreive current time
+    time(&time_now);
+
+    // Set timezone to Eastern Standard Time and print local time
+    setenv("TZ", "EST5EDT,M3.2.0/2,M11.1.0", 1);
+    tzset();
+    localtime_r(&time_now, &time_now_timeinfo);
+    strftime(strftime_buf, sizeof(strftime_buf), "%c", &time_now_timeinfo);
+    ESP_LOGI(TAG_OUTPUT, "The current date/time in New York is: %s", strftime_buf);
+
+    vTaskDelete( NULL ); // exit self cleanly - https://www.freertos.org/implementing-a-FreeRTOS-task.html
+}
+
+static void display_internal_time_loop( void *pvParameters )
+{
+    const int sleep_millisec = 10;
     for( ;; )
     {
-        ESP_LOGI(TAG_OUTPUT, "(!) Displaying Internal Time...")
 
-        wait_until_time_updated(); // ensure time is updated before displaying it
+        //ESP_LOGI(TAG_OUTPUT, "starting display time task asyncronously");
+        xTaskCreate(display_internal_time,  // pointer to function
+            "time_update_task",        // Task name string for debug purposes
+            8000,            // Stack depth as word
+            NULL,           // function parameter (like a generic object)
+            1,              // Task Priority (Greater value has higher priority)
+            NULL);          // Task handle can be ignored, task kills self
 
-        time_t now;
-        struct tm timeinfo;
-        time(&now);
-        char strftime_buf[64];
-
-        // Set timezone to Eastern Standard Time and print local time
-        setenv("TZ", "EST5EDT,M3.2.0/2,M11.1.0", 1);
-        tzset();
-        localtime_r(&now, &timeinfo);
-        strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
-        ESP_LOGI(TAG, "The current date/time in New York is: %s", strftime_buf);
-
-        const int sleep_millisec = 1000;
-        ESP_LOGI(TAG_OUTPUT, "output of time completed. entering task wait for %d milliseconds", sleep_millisec);
+        //ESP_LOGI(TAG_OUTPUT, "entering task wait for %d milliseconds", sleep_millisec);
         vTaskDelay( sleep_millisec / portTICK_PERIOD_MS ); // wait / yield time to other tasks
     }
 }
@@ -123,6 +153,14 @@ void app_main()
     ++boot_count;
     ESP_LOGI(TAG, "Boot count: %d", boot_count);
 
+
+    // initialize wifi
+    initialize_utilities();
+
+
+    /*
+        create updater task - updates time w/ SNTP every hour
+    */
     BaseType_t xReturned_updateTask;
     xReturned_updateTask = xTaskCreate(task_update_internal_time_with_sntp,  // pointer to function
                 "time_update_task",        // Task name string for debug purposes
@@ -130,27 +168,24 @@ void app_main()
                 NULL,           // function parameter (like a generic object)
                 1,              // Task Priority (Greater value has higher priority)
                 &time_update_task_handle);  // Task handle
+    if( xReturned_updateTask == pdPASS )
+    {
+        ESP_LOGI(TAG_RETREIVE, "time updater task started successfully");
+    }
 
+    /*
+        create display task - displays time every 10 ms
+    */
     BaseType_t xReturned_outputTask;
-    xReturned_outputTask = xTaskCreate(display_internal_time,  // pointer to function
+    xReturned_outputTask = xTaskCreate(display_internal_time_loop,  // pointer to function
                 "time_output_task",        // Task name string for debug purposes
                 8000,            // Stack depth as word
                 NULL,           // function parameter (like a generic object)
                 1,              // Task Priority (Greater value has higher priority)
                 &time_output_task_handle);  // Task handle
-
-    if( xReturned_updateTask == pdPASS )
-    {
-        /* The task was created.  Use the task's handle to delete the task. */
-        ESP_LOGI(TAG_RETREIVE, "time updater task started successfully");
-        //vTaskDelete( xHandle );
-    }
-
     if( xReturned_outputTask == pdPASS )
     {
-        /* The task was created.  Use the task's handle to delete the task. */
         ESP_LOGI(TAG_RETREIVE, "time output task started successfully");
-        //vTaskDelete( xHandle );
     }
 
 }
@@ -233,12 +268,18 @@ static void update_time_with_sntp(void)
 /* wait untill time has updated */
 static void wait_until_time_updated(void)
 {
-    // wait for time to be set
-    time_t now = 0;
-    struct tm timeinfo = { 0 };
+    // init vars
+    time_t now;
+    struct tm timeinfo;
+
+    // get the time
+    time(&now);
+    localtime_r(&now, &timeinfo);
+
+    // test and block untill ready w/ max block of 10s
     int retry = 0;
     const int retry_count = 10;
-    while(timeinfo.tm_year < (2016 - 1900) && ++retry < retry_count) {
+    while(timeinfo.tm_year < (1990 - 1900) && ++retry < retry_count) { // consider all years above 1990 to be valid
         ESP_LOGI(TAG, "       Waiting for system time to be set... (%d/%d)", retry, retry_count);
         vTaskDelay(2000 / portTICK_PERIOD_MS);
         time(&now);
