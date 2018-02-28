@@ -1,4 +1,4 @@
-vlad@vlad-Flex-3:/var/www/git/Academic/CSCI/arch/time_sync/src$ make
+vlad@vlad-Flex-3:/var/www/git/Academic/CSCI/arch/time_sync/src$ make monitor
 MONITOR
 --- idf_monitor on /dev/ttyUSB0 115200 ---
 --- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
