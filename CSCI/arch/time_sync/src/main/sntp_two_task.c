@@ -77,23 +77,6 @@ static esp_err_t event_handler(void *ctx, system_event_t *event);
 
 
 
-static void set_time_now_to_predefined(){
-    ESP_LOGI(TAG_RETREIVE, "(*) attempting to update time now to a predefined value!")
-    struct timeval now;
-    int rc;
-
-    now.tv_sec=866208142;
-    now.tv_usec=290944;
-
-    rc=settimeofday(&now, NULL);
-    if(rc==0) {
-        ESP_LOGI(TAG_RETREIVE, "    time update successful")
-    }
-    else {
-        ESP_LOGE(TAG_RETREIVE, "    time update failed, errno = %d\n",errno)
-    }
-}
-
 static void task_update_internal_time_with_sntp( void *pvParameters )
 {
     const int sleep_sec = 60; // 10 seconds
@@ -122,7 +105,7 @@ static void display_internal_time( void *pvParameters)
     setenv("TZ", "EST5EDT,M3.2.0/2,M11.1.0", 1);
     tzset();
     localtime_r(&time_now, &time_now_timeinfo);
-    strftime(strftime_buf, sizeof(strftime_buf), "%c", &time_now_timeinfo);
+    strftime(strftime_buf, sizeof(strftime_buf), "%Y/%m/%d %T", &time_now_timeinfo);
     ESP_LOGI(TAG_OUTPUT, "The current date/time in New York is: %s", strftime_buf);
 
     vTaskDelete( NULL ); // exit self cleanly - https://www.freertos.org/implementing-a-FreeRTOS-task.html
@@ -137,7 +120,7 @@ static void display_internal_time_loop( void *pvParameters )
         //ESP_LOGI(TAG_OUTPUT, "starting display time task asyncronously");
         xTaskCreate(display_internal_time,  // pointer to function
             "time_update_task",        // Task name string for debug purposes
-            8000,            // Stack depth as word
+            4000,            // Stack depth as word
             NULL,           // function parameter (like a generic object)
             1,              // Task Priority (Greater value has higher priority)
             NULL);          // Task handle can be ignored, task kills self
@@ -170,8 +153,12 @@ void app_main()
                 &time_update_task_handle);  // Task handle
     if( xReturned_updateTask == pdPASS )
     {
-        ESP_LOGI(TAG_RETREIVE, "time updater task started successfully");
+        ESP_LOGI(TAG, "time updater task started successfully");
     }
+
+
+
+    wait_until_time_updated();
 
     /*
         create display task - displays time every 10 ms
@@ -185,7 +172,7 @@ void app_main()
                 &time_output_task_handle);  // Task handle
     if( xReturned_outputTask == pdPASS )
     {
-        ESP_LOGI(TAG_RETREIVE, "time output task started successfully");
+        ESP_LOGI(TAG, "time output task started successfully");
     }
 
 }
