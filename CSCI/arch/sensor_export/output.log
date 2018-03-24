@@ -1,0 +1,881 @@
+vlad@vlad-Flex-3:/var/www/git/Academic/CSCI/arch/time_sync/src$ make monitor
+MONITOR
+--- idf_monitor on /dev/ttyUSB0 115200 ---
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:5648
+ho 0 tail 12 room 4
+load:0x40078000,len:0
+load:0x40078000,len:13904
+entry 0x40078fd8
+I (30) boot: ESP-IDF v3.1-dev-345-ge2cbcd5 2nd stage bootloader
+I (30) boot: compile time 08:03:07
+I (30) boot: Enabling RNG early entropy source...
+I (36) boot: SPI Speed      : 40MHz
+I (40) boot: SPI Mode       : DIO
+I (44) boot: SPI Flash Size : 4MB
+I (48) boot: Partition Table:
+I (52) boot: ## Label            Usage          Type ST Offset   Length
+I (59) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (74) boot:  2 factory          factory app      00 00 00010000 00100000
+I (82) boot: End of partition table
+I (86) esp_image: segment 0: paddr=0x00010020 vaddr=0x3f400020 size=0x0f76c ( 63340) map
+I (117) esp_image: segment 1: paddr=0x0001f794 vaddr=0x3ffb0000 size=0x0087c (  2172) load
+I (118) esp_image: segment 2: paddr=0x00020018 vaddr=0x400d0018 size=0x5684c (354380) map
+0x400d0018: _stext at ??:?
+
+I (246) esp_image: segment 3: paddr=0x0007686c vaddr=0x3ffb087c size=0x02918 ( 10520) load
+I (251) esp_image: segment 4: paddr=0x0007918c vaddr=0x40080000 size=0x00400 (  1024) load
+0x40080000: _iram_start at /home/vlad/esp32/esp-idf/components/freertos/./xtensa_vectors.S:1685
+
+I (253) esp_image: segment 5: paddr=0x00079594 vaddr=0x40080400 size=0x0e010 ( 57360) load
+I (286) esp_image: segment 6: paddr=0x000875ac vaddr=0x400c0000 size=0x00000 (     0) load
+I (286) esp_image: segment 7: paddr=0x000875b4 vaddr=0x50000000 size=0x00004 (     4) load
+I (301) boot: Loaded app from partition at offset 0x10000
+I (301) boot: Disabling RNG early entropy source...
+I (304) cpu_start: Pro cpu up.
+I (308) cpu_start: Starting app cpu, entry point is 0x40080f58
+0x40080f58: call_start_cpu1 at /home/vlad/esp32/esp-idf/components/esp32/./cpu_start.c:215
+
+I (0) cpu_start: App cpu up.
+I (318) heap_init: Initializing. RAM available for dynamic allocation:
+I (325) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
+I (331) heap_init: At 3FFB8ED8 len 00027128 (156 KiB): DRAM
+I (337) heap_init: At 3FFE0440 len 00003BC0 (14 KiB): D/IRAM
+I (344) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (350) heap_init: At 4008E410 len 00011BF0 (70 KiB): IRAM
+I (356) cpu_start: Pro cpu start user code
+I (39) cpu_start: Starting scheduler on PRO CPU.
+I (0) cpu_start: Starting scheduler on APP CPU.
+I (40) app: Boot count: 1
+I (40) retreive: initializing utilities required for retreiving time with SNTP
+I (50) retreive: initializing non-volatile storage
+I (90) retreive: initializing WIFI
+I (90) wifi: wifi firmware version: 36f7b5c
+I (90) wifi: config NVS flash: enabled
+I (90) wifi: config nano formating: disabled
+I (100) system_api: Base MAC address is not set, read default base MAC address from BLK0 of EFUSE
+I (110) system_api: Base MAC address is not set, read default base MAC address from BLK0 of EFUSE
+I (130) wifi: Init dynamic tx buffer num: 32
+I (130) wifi: Init data frame dynamic rx buffer num: 32
+I (130) wifi: Init management frame dynamic rx buffer num: 32
+I (140) wifi: wifi driver task: 3ffc0324, prio:23, stack:4096
+I (140) wifi: Init static rx buffer num: 10
+I (150) wifi: Init dynamic rx buffer num: 32
+I (150) wifi: wifi power manager task: 0x3ffc4f64 prio: 21 stack: 2560
+I (160) retreive:    Setting WiFi configuration SSID Beach Bus...
+I (160) retreive:     WIFI initialized successfully
+I (170) app: time updater task started successfully
+I (170) retreive: (!) Starting Update of Internal Wall-Clock Time Again...
+I (180) retreive: retreiving time with SNTP protocol
+I (190) app:        Waiting for system time to be set... (1/10)
+I (200) retreive: starting WiFi radio and connection
+I (270) phy: phy_version: 383.0, 79a622c, Jan 30 2018, 15:38:06, 0, 0
+I (270) wifi: mode : sta (30:ae:a4:24:d0:64)
+I (270) retreive: waiting untill wifi has connected
+I (1000) wifi: n:6 0, o:1 0, ap:255 255, sta:6 0, prof:1
+I (1980) wifi: state: init -> auth (b0)
+I (1980) wifi: state: auth -> assoc (0)
+I (1990) wifi: state: assoc -> run (10)
+I (2000) wifi: connected with Beach Bus, channel 6
+I (2200) app:        Waiting for system time to be set... (2/10)
+I (4050) event: sta ip: 192.168.1.102, mask: 255.255.255.0, gw: 192.168.1.1
+I (4050) retreive: wifi is now connected
+I (4050) retreive: requesting update of time with SNTP
+I (4050) retreive: starting SNTP
+I (4060) retreive:    SNTP polling opened. Waiting untill time updated...
+I (4060) app:        Waiting for system time to be set... (1/10)
+I (4200) app: time output task started successfully
+I (4200) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4210) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4220) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4230) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4240) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4250) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4260) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4270) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4280) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4290) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4300) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4310) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4320) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4330) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4340) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4350) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4360) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4370) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4380) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4390) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4400) output: The current date/time in New York is: 2018/02/28 08:51:15
+I (4410) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4420) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4430) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4440) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4450) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4460) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4470) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4480) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4490) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4500) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4510) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4520) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4530) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4540) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4550) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4560) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4570) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4580) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4590) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4600) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4610) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4620) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4630) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4640) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4650) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4660) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4670) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4680) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4690) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4700) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4710) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4720) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4730) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4740) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4750) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4760) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4770) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4780) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4790) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4800) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4810) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4820) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4830) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4840) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4850) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4860) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4870) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4880) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4890) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4900) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4910) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4920) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4930) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4940) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4950) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4960) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4970) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4980) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4990) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (4990) wifi: pm start, type:0
+
+I (5000) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5010) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5020) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5030) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5040) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5050) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5060) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5070) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5080) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5090) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5100) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5110) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5120) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5130) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5140) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5150) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5160) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5170) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5180) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5190) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5200) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5210) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5220) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5230) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5240) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5250) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5260) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5270) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5280) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5290) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5300) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5310) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5320) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5330) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5340) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5350) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5360) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5370) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5380) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5390) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5400) output: The current date/time in New York is: 2018/02/28 08:51:16
+I (5410) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5420) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5430) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5440) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5450) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5460) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5470) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5480) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5490) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5500) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5510) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5520) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5530) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5540) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5550) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5560) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5570) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5580) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5590) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5600) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5610) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5620) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5630) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5640) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5650) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5660) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5670) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5680) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5690) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5700) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5710) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5720) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5730) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5740) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5750) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5760) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5770) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5780) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5790) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5800) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5810) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5820) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5830) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5840) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5850) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5860) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5870) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5880) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5890) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5900) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5910) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5920) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5930) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5940) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5950) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5960) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5970) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5980) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (5990) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6000) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6010) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6020) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6030) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6040) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6050) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6060) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6070) retreive:    time has been updated. closed SNTP polling.
+I (6070) retreive: stopping WiFi radio and connection
+I (6070) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6070) wifi: state: run -> init (0)
+I (6080) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6080) wifi: n:6 0, o:6 0, ap:255 255, sta:6 0, prof:1
+I (6080) wifi: pm stop, total sleep time: 0/1091358
+
+I (6090) wifi: flush txq
+I (6090) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6100) wifi: stop sw txq
+I (6100) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6110) wifi: lmac stop hw txq
+I (6110) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6120) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6120) retreive: update of wall clock time has completed. entering task wait for 60 seconds
+I (6130) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6140) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6150) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6160) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6170) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6180) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6190) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6200) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6210) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6220) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6230) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6240) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6250) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6260) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6270) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6280) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6290) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6300) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6310) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6320) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6330) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6340) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6350) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6360) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6370) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6380) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6390) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6400) output: The current date/time in New York is: 2018/02/28 08:51:17
+I (6410) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6420) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6430) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6440) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6450) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6460) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6470) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6480) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6490) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6500) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6510) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6520) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6530) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6540) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6550) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6560) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6570) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6580) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6590) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6600) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6610) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6620) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6630) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6640) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6650) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6660) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6670) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6680) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6690) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6700) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6710) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6720) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6730) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6740) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6750) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6760) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6770) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6780) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6790) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6800) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6810) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6820) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6830) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6840) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6850) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6860) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6870) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6880) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6890) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6900) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6910) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6920) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6930) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6940) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6950) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6960) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6970) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6980) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (6990) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7000) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7010) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7020) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7030) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7040) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7050) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7060) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7070) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7080) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7090) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7100) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7110) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7120) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7130) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7140) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7150) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7160) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7170) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7180) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7190) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7200) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7210) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7220) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7230) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7240) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7250) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7260) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7270) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7280) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7290) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7300) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7310) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7320) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7330) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7340) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7350) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7360) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7370) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7380) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7390) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7400) output: The current date/time in New York is: 2018/02/28 08:51:18
+I (7410) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7420) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7430) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7440) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7450) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7460) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7470) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7480) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7490) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7500) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7510) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7520) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7530) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7540) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7550) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7560) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7570) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7580) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7590) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7600) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7610) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7620) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7630) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7640) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7650) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7660) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7670) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7680) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7690) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7700) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7710) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7720) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7730) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7740) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7750) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7760) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7770) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7780) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7790) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7800) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7810) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7820) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7830) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7840) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7850) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7860) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7870) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7880) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7890) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7900) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7910) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7920) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7930) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7940) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7950) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7960) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7970) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7980) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (7990) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8000) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8010) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8020) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8030) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8040) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8050) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8060) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8070) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8080) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8090) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8100) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8110) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8120) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8130) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8140) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8150) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8160) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8170) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8180) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8190) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8200) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8210) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8220) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8230) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8240) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8250) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8260) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8270) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8280) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8290) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8300) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8310) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8320) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8330) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8340) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8350) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8360) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8370) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8380) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8390) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8400) output: The current date/time in New York is: 2018/02/28 08:51:19
+I (8410) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8420) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8430) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8440) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8450) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8460) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8470) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8480) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8490) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8500) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8510) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8520) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8530) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8540) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8550) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8560) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8570) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8580) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8590) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8600) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8610) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8620) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8630) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8640) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8650) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8660) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8670) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8680) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8690) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8700) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8710) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8720) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8730) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8740) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8750) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8760) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8770) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8780) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8790) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8800) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8810) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8820) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8830) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8840) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8850) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8860) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8870) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8880) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8890) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8900) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8910) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8920) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8930) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8940) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8950) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8960) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8970) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8980) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (8990) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9000) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9010) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9020) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9030) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9040) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9050) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9060) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9070) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9080) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9090) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9100) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9110) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9120) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9130) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9140) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9150) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9160) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9170) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9180) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9190) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9200) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9210) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9220) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9230) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9240) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9250) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9260) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9270) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9280) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9290) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9300) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9310) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9320) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9330) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9340) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9350) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9360) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9370) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9380) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9390) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9400) output: The current date/time in New York is: 2018/02/28 08:51:20
+I (9410) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9420) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9430) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9440) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9450) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9460) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9470) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9480) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9490) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9500) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9510) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9520) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9530) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9540) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9550) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9560) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9570) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9580) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9590) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9600) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9610) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9620) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9630) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9640) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9650) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9660) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9670) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9680) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9690) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9700) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9710) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9720) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9730) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9740) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9750) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9760) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9770) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9780) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9790) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9800) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9810) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9820) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9830) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9840) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9850) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9860) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9870) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9880) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9890) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9900) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9910) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9920) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9930) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9940) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9950) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9960) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9970) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9980) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (9990) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10000) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10010) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10020) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10030) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10040) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10050) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10060) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10070) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10080) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10090) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10100) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10110) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10120) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10130) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10140) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10150) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10160) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10170) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10180) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10190) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10200) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10210) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10220) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10230) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10240) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10250) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10260) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10270) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10280) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10290) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10300) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10310) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10320) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10330) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10340) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10350) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10360) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10370) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10380) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10390) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10400) output: The current date/time in New York is: 2018/02/28 08:51:21
+I (10410) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10420) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10430) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10440) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10450) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10460) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10470) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10480) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10490) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10500) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10510) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10520) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10530) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10540) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10550) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10560) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10570) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10580) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10590) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10600) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10610) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10620) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10630) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10640) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10650) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10660) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10670) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10680) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10690) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10700) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10710) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10720) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10730) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10740) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10750) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10760) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10770) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10780) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10790) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10800) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10810) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10820) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10830) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10840) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10850) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10860) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10870) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10880) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10890) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10900) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10910) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10920) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10930) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10940) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10950) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10960) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10970) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10980) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (10990) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11000) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11010) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11020) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11030) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11040) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11050) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11060) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11070) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11080) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11090) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11100) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11110) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11120) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11130) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11140) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11150) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11160) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11170) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11180) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11190) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11200) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11210) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11220) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11230) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11240) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11250) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11260) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11270) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11280) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11290) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11300) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11310) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11320) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11330) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11340) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11350) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11360) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11370) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11380) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11390) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11400) output: The current date/time in New York is: 2018/02/28 08:51:22
+I (11410) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11420) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11430) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11440) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11450) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11460) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11470) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11480) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11490) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11500) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11510) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11520) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11530) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11540) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11550) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11560) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11570) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11580) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11590) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11600) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11610) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11620) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11630) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11640) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11650) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11660) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11670) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11680) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11690) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11700) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11710) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11720) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11730) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11740) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11750) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11760) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11770) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11780) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11790) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11800) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11810) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11820) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11830) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11840) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11850) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11860) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11870) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11880) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11890) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11900) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11910) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11920) output: The current date/time in New York is: 2018/02/28 08:51:23
+I (11930) output: The current date/time in New York is: 2018/02/28 08:51:23
