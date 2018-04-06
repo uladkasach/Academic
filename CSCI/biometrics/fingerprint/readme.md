@@ -23,4 +23,4 @@
         - ridge endings -> one ridge pixel neighbor
 6. plot results
     - special care taken to overlay minutae over the skeletonized image
-    
+    ![fingerprint_3_minutae](https://user-images.githubusercontent.com/10381896/38402956-df80271e-392d-11e8-8f9a-5a923437fdd9.png)
