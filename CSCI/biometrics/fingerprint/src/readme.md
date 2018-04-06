@@ -1,6 +1,4 @@
 
-2. A report showing the processing steps (include images) and findings. You must define what minutiae types you estimate, and you must include references for the published paper(s) of the method(s) you used as well as for any off-the-shelf matlab code you may have used.
-
 ## How to Run
 1. ensure `Pillow`/`PIL`, `Numpy`, `skimage`, and `scikit-learn` packages are installed
 2. run `python extract.py -h` for arguments list
