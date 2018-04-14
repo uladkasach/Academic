@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+		<script src="js/three.js"></script>
+		<script src="js/ColladaLoader.js"></script>
+		<script src="js/OrbitControls.js"></script>
+		<script>
+			// Our Javascript will go here.
+		</script>
+	</body>
+</html>
+
+
+
+<script>
+    /* utils */
+    function animate() {
+        setTimeout( function() {
+            requestAnimationFrame( animate );
+        }, 1000 / 40 );
+        animation_function();
+        renderer.render( scene, camera );
+    }
+
+    function PinaCollada(modelname, scale) { // https://stackoverflow.com/questions/9783458/blender-export-to-three-js
+        var loader = new THREE.ColladaLoader();
+        var promise_object = new Promise((resolve, reject)=>{
+            loader.load( 'models/'+modelname+'.dae', function colladaReady( collada ) {
+                // define the object and scale it
+                localObject = collada.scene;
+                localObject.scale.x = localObject.scale.y = localObject.scale.z = scale;
+                localObject.updateMatrix();
+
+                // resolve with result
+                resolve(localObject);
+            });
+        })
+        return promise_object;
+    }
+</script>
+<script>
+    // define scene, camera and renderer
+    var scene = new THREE.Scene();
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+    // defube canera
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    var controls = new THREE.OrbitControls( camera );
+    controls.enabled = true;
+    controls.update();
+
+    // append canvas/renderer to body
+    document.body.appendChild( renderer.domElement );
+
+    // add ambient lighting
+    var light = new THREE.AmbientLight( 0x404040, 1 ); // soft white light
+    scene.add( light );
+
+    // build a box
+    /*
+    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    var cube = new THREE.Mesh( geometry, material );
+    scene.add( cube );
+    */
+    // add the snek
+    var promise_snek = new PinaCollada('snek', 1);
+    var promise_snek_added = promise_snek.then((snek)=>{
+        scene.add(snek);
+        window.snek = snek;
+    })
+
+    // move camera out - to display box
+    camera.position.z = 5;
+
+    // define animation function
+    function animation_function(){
+        window.snek.rotation.x += 0.01;
+        window.snek.rotation.y += 0.01;
+    }
+
+    // begin animation loop, after loading object
+    promise_snek_added.then(_=>animate())
+</script>
